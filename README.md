@@ -4,8 +4,9 @@ Hosted mockup previews for Maximus Marketing pitches.
 
 ## Live links
 
-- Hub: open `index.html` at the Pages root
-- Greenville Tobacco & Vape: `/previews/greenville-tobacco-vape/`
+- Hub: https://zacharycaesarr.github.io/maximus-previews/
+- Greenville Tobacco & Vape: https://zacharycaesarr.github.io/maximus-previews/previews/greenville-tobacco-vape/
+- Repo: https://github.com/zacharycaesarr/maximus-previews
 
 ## Add a new preview
 
