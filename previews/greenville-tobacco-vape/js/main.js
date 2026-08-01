@@ -3,24 +3,61 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
   /* ---------- Age gate ---------- */
   var gate = document.getElementById("agegate");
   var enterBtn = document.getElementById("age-enter");
   var exitBtn = document.getElementById("age-exit");
   var gateKey = "gtv_age_ok";
+  var hero = document.getElementById("hero");
+
+  function pinTop() {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
+  function revealHero() {
+    pinTop();
+    document.body.classList.add("hero-ready");
+    runSlogan();
+    var logo = document.getElementById("hero-logo");
+    if (logo && logo.focus) {
+      try {
+        logo.setAttribute("tabindex", "-1");
+      } catch (err) {}
+    }
+  }
 
   function openGate() {
     document.body.classList.add("gate-locked");
-    if (gate) gate.classList.remove("is-gone");
+    pinTop();
+    if (!gate) return;
+    gate.classList.remove("is-gone");
+    gate.removeAttribute("hidden");
+    window.requestAnimationFrame(function () {
+      gate.classList.add("is-live");
+    });
   }
 
   function closeGate() {
+    pinTop();
     document.body.classList.remove("gate-locked");
-    if (!gate) return;
+    if (!gate) {
+      revealHero();
+      return;
+    }
+    gate.classList.remove("is-live");
     gate.classList.add("is-gone");
     window.setTimeout(function () {
       gate.setAttribute("hidden", "");
-    }, reduceMotion ? 0 : 360);
+      pinTop();
+      revealHero();
+      window.setTimeout(pinTop, 50);
+    }, reduceMotion ? 0 : 380);
   }
 
   if (sessionStorage.getItem(gateKey) === "1") {
@@ -28,12 +65,15 @@
       gate.classList.add("is-gone");
       gate.setAttribute("hidden", "");
     }
+    document.body.classList.remove("gate-locked");
+    window.setTimeout(revealHero, 40);
   } else {
     openGate();
   }
 
   if (enterBtn) {
-    enterBtn.addEventListener("click", function () {
+    enterBtn.addEventListener("click", function (e) {
+      e.preventDefault();
       sessionStorage.setItem(gateKey, "1");
       closeGate();
     });
@@ -45,27 +85,77 @@
     });
   }
 
-  /* ---------- Category copy + bottom sheet ---------- */
+  var hoursPill = document.getElementById("hours-pill");
+  if (hoursPill) {
+    hoursPill.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        hoursPill.click();
+      }
+    });
+  }
+
+  /* ---------- Slogan words ---------- */
+  function runSlogan() {
+    var slogan = document.getElementById("slogan");
+    if (!slogan) return;
+    if (reduceMotion) {
+      slogan.classList.add("is-in");
+      return;
+    }
+    slogan.classList.remove("is-in");
+    void slogan.offsetWidth;
+    slogan.classList.add("is-in");
+  }
+
+  /* ---------- Toast + universal tap feedback ---------- */
+  var toast = document.getElementById("toast");
+  var toastTimer = null;
+
+  function showToast(msg) {
+    if (!toast || !msg) return;
+    toast.textContent = msg;
+    toast.hidden = false;
+    window.requestAnimationFrame(function () {
+      toast.classList.add("is-on");
+    });
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(function () {
+      toast.classList.remove("is-on");
+      window.setTimeout(function () {
+        toast.hidden = true;
+      }, 200);
+    }, 1700);
+  }
+
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-tap]");
+    if (!el) return;
+    var msg = el.getAttribute("data-tap");
+    if (msg) showToast(msg);
+  });
+
+  /* ---------- Category sheet ---------- */
   var catCopy = {
     disposables: {
       title: "Disposables",
-      body: "Ready to pull devices in the flavors people ask for every day. Order Ahead will let you lock one in before you show up.",
+      body: "Ready to pull devices in the flavors people ask for every day.",
     },
     devices: {
       title: "Devices",
-      body: "Pods, kits, and rebuild gear without the confusing wall of options. Grab what fits your setup.",
+      body: "Pods, kits, and rebuild gear without the confusing wall of options.",
     },
     eliquid: {
       title: "E-Liquid",
-      body: "Bottles for the people who still like to fill their own. Sweet, menthol, tobacco, the usual hits.",
+      body: "Bottles for the people who still like to fill their own.",
     },
     pouches: {
       title: "Nicotine Pouches",
-      body: "The reason half of Staunton walks through the door. Strengths and flavors kept stocked.",
+      body: "The reason half of Staunton walks through the door.",
     },
     coils: {
       title: "Coils",
-      body: "Replacements for the kits we sell so you are not hunting across town mid week.",
+      body: "Replacements for the kits we sell so you are not hunting mid week.",
     },
     accessories: {
       title: "Accessories",
@@ -84,7 +174,8 @@
     if (!sheet || !data) return;
     lastFocus = document.activeElement;
     sheetTitle.textContent = data.title;
-    sheetBody.textContent = data.body + " Coming soon with Order Ahead.";
+    sheetBody.innerHTML =
+      data.body + ' Coming soon with <span class="oa">Order Ahead</span>.';
     sheet.hidden = false;
     window.requestAnimationFrame(function () {
       sheet.classList.add("is-open");
@@ -116,32 +207,6 @@
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && sheet && !sheet.hidden) closeSheet();
-  });
-
-  /* ---------- Toast demos ---------- */
-  var toast = document.getElementById("toast");
-  var toastTimer = null;
-
-  function showToast(msg) {
-    if (!toast) return;
-    toast.textContent = msg;
-    toast.hidden = false;
-    window.requestAnimationFrame(function () {
-      toast.classList.add("is-on");
-    });
-    window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(function () {
-      toast.classList.remove("is-on");
-      window.setTimeout(function () {
-        toast.hidden = true;
-      }, 200);
-    }, 1900);
-  }
-
-  document.querySelectorAll("[data-demo-toast]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      showToast(btn.getAttribute("data-demo-toast"));
-    });
   });
 
   /* ---------- QR demo ---------- */
@@ -177,28 +242,68 @@
     qrBuilt = true;
   }
 
-  function showQr() {
-    if (!qrDemo) return;
-    buildQr();
-    var back = qrDemo.querySelector(".qr-demo__back");
-    if (back) back.hidden = false;
-    qrDemo.classList.add("is-flipped");
-  }
-
-  function hideQr() {
-    if (!qrDemo) return;
-    qrDemo.classList.remove("is-flipped");
-  }
-
-  if (qrFlip) qrFlip.addEventListener("click", showQr);
-  if (qrReset) qrReset.addEventListener("click", hideQr);
-
-  /* ---------- Scroll reveals ---------- */
-  var reveals = document.querySelectorAll(".reveal");
-  if (reduceMotion) {
-    reveals.forEach(function (el) {
-      el.classList.add("is-in");
+  if (qrFlip) {
+    qrFlip.addEventListener("click", function () {
+      if (!qrDemo) return;
+      buildQr();
+      var back = qrDemo.querySelector(".qr-demo__back");
+      if (back) back.hidden = false;
+      qrDemo.classList.add("is-flipped");
+      showToast("Sample pickup QR ready");
     });
+  }
+
+  if (qrReset) {
+    qrReset.addEventListener("click", function () {
+      if (qrDemo) qrDemo.classList.remove("is-flipped");
+    });
+  }
+
+  /* ---------- Product rail scroll (desktop arrows + drag) ---------- */
+  var rail = document.getElementById("product-rail");
+  var prevBtn = document.getElementById("prod-prev");
+  var nextBtn = document.getElementById("prod-next");
+
+  function scrollRail(dir) {
+    if (!rail) return;
+    rail.scrollBy({ left: dir * Math.min(280, rail.clientWidth * 0.8), behavior: "smooth" });
+  }
+
+  if (prevBtn) prevBtn.addEventListener("click", function () { scrollRail(-1); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { scrollRail(1); });
+
+  function enableDrag(el) {
+    if (!el) return;
+    var down = false;
+    var startX = 0;
+    var startScroll = 0;
+
+    el.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "touch") return;
+      down = true;
+      startX = e.clientX;
+      startScroll = el.scrollLeft;
+      el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      el.scrollLeft = startScroll - (e.clientX - startX);
+    });
+    el.addEventListener("pointerup", function () { down = false; });
+    el.addEventListener("pointercancel", function () { down = false; });
+  }
+
+  enableDrag(rail);
+  enableDrag(document.querySelector(".review-rail"));
+  enableDrag(document.querySelector(".lane-rail"));
+
+  /* ---------- Scroll reveals + dock ---------- */
+  var reveals = document.querySelectorAll(".reveal");
+  var dock = document.getElementById("dock");
+
+  if (reduceMotion) {
+    reveals.forEach(function (el) { el.classList.add("is-in"); });
+    if (dock) dock.classList.add("is-shown");
   } else if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -209,36 +314,203 @@
           }
         });
       },
-      { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.14, rootMargin: "0px 0px -30px 0px" }
     );
-    reveals.forEach(function (el) {
-      io.observe(el);
-    });
+    reveals.forEach(function (el) { io.observe(el); });
   } else {
-    reveals.forEach(function (el) {
-      el.classList.add("is-in");
+    reveals.forEach(function (el) { el.classList.add("is-in"); });
+  }
+
+  function updateDock() {
+    if (!dock) return;
+    if (window.scrollY > 220) dock.classList.add("is-shown");
+    else dock.classList.remove("is-shown");
+  }
+
+  var shopbar = document.getElementById("shopbar");
+
+  function updateShopbar() {
+    if (!shopbar) return;
+    if (window.scrollY > 90) shopbar.classList.add("is-scrolled");
+    else shopbar.classList.remove("is-scrolled");
+  }
+
+  updateDock();
+  updateShopbar();
+  window.addEventListener(
+    "scroll",
+    function () {
+      updateDock();
+      updateShopbar();
+    },
+    { passive: true }
+  );
+
+  var searchForm = document.getElementById("shop-search");
+  if (searchForm) {
+    searchForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var q = document.getElementById("search-q");
+      var val = q && q.value ? q.value.trim() : "";
+      showToast(val ? 'Search preview: "' + val + '"' : "Search preview");
     });
   }
 
-  /* ---------- Soft cloud parallax on scroll ---------- */
-  var drifts = document.querySelectorAll("[data-drift]");
-  if (!reduceMotion && drifts.length) {
-    var ticking = false;
-    window.addEventListener(
-      "scroll",
-      function () {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(function () {
-          var y = window.scrollY || 0;
-          drifts.forEach(function (cloud, i) {
-            var factor = (i + 1) * 0.018;
-            cloud.style.translate = "0 " + y * factor + "px";
-          });
-          ticking = false;
-        });
-      },
-      { passive: true }
-    );
+  var helpFab = document.getElementById("help-fab");
+  var helpPanel = document.getElementById("help-panel");
+  var helpClose = document.getElementById("help-close");
+
+  function openHelp() {
+    if (!helpPanel || !helpFab) return;
+    helpPanel.hidden = false;
+    window.requestAnimationFrame(function () {
+      helpPanel.classList.add("is-open");
+    });
+    helpFab.setAttribute("aria-expanded", "true");
   }
+
+  function closeHelp() {
+    if (!helpPanel || !helpFab) return;
+    helpPanel.classList.remove("is-open");
+    helpFab.setAttribute("aria-expanded", "false");
+    window.setTimeout(function () {
+      helpPanel.hidden = true;
+    }, reduceMotion ? 0 : 220);
+  }
+
+  if (helpFab) {
+    helpFab.addEventListener("click", function () {
+      if (helpPanel && helpPanel.classList.contains("is-open")) closeHelp();
+      else openHelp();
+    });
+  }
+  if (helpClose) helpClose.addEventListener("click", closeHelp);
+
+  /* ---------- Realistic drifting cloud canvas ---------- */
+  var canvas = document.getElementById("cloud-canvas");
+  if (!canvas || reduceMotion) return;
+
+  var ctx = canvas.getContext("2d");
+  var clouds = [];
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var w = 0;
+  var h = 0;
+  var last = 0;
+
+  function resize() {
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function makePuff(base) {
+    return {
+      ox: (Math.random() - 0.5) * base.spread,
+      oy: (Math.random() - 0.5) * base.spread * 0.45,
+      r: base.r * (0.45 + Math.random() * 0.7),
+      phase: Math.random() * Math.PI * 2,
+    };
+  }
+
+  function spawnCloud(seedX) {
+    var baseR = 55 + Math.random() * 90;
+    var puffCount = 6 + Math.floor(Math.random() * 5);
+    var c = {
+      x: typeof seedX === "number" ? seedX : Math.random() * (w + 400) - 200,
+      y: 40 + Math.random() * (h * 0.62),
+      speed: 0.08 + Math.random() * 0.16,
+      life: Math.random(),
+      grow: 0.00015 + Math.random() * 0.00025,
+      fading: Math.random() > 0.5,
+      alpha: 0.12 + Math.random() * 0.22,
+      spread: baseR * 1.6,
+      r: baseR,
+      puffs: [],
+      morph: Math.random() * Math.PI * 2,
+    };
+    for (var i = 0; i < puffCount; i++) c.puffs.push(makePuff(c));
+    return c;
+  }
+
+  function seedClouds() {
+    clouds = [];
+    var count = Math.max(7, Math.floor(w / 160));
+    for (var i = 0; i < count; i++) clouds.push(spawnCloud());
+  }
+
+  function drawCloud(c, t) {
+    var breathe = 1 + Math.sin(t * 0.0004 + c.morph) * 0.06;
+    var a = c.alpha * c.life;
+    if (a <= 0.01) return;
+
+    ctx.save();
+    ctx.translate(c.x, c.y);
+    ctx.globalAlpha = a;
+    ctx.fillStyle = "#ffffff";
+    ctx.shadowColor = "rgba(255,255,255,0.55)";
+    ctx.shadowBlur = 24;
+
+    for (var i = 0; i < c.puffs.length; i++) {
+      var p = c.puffs[i];
+      var wriggle = Math.sin(t * 0.0007 + p.phase) * 4;
+      var rr = p.r * breathe * (0.92 + Math.sin(t * 0.0005 + p.phase) * 0.08);
+      ctx.beginPath();
+      ctx.ellipse(p.ox + wriggle, p.oy + wriggle * 0.4, rr * 1.15, rr * 0.78, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function tick(ts) {
+    if (!last) last = ts;
+    var dt = Math.min(40, ts - last);
+    last = ts;
+
+    ctx.clearRect(0, 0, w, h);
+
+    for (var i = 0; i < clouds.length; i++) {
+      var c = clouds[i];
+      c.x += c.speed * (dt * 0.06);
+      c.morph += dt * 0.0004;
+
+      if (c.fading) {
+        c.life -= c.grow * dt;
+        if (c.life <= 0.05) {
+          c.fading = false;
+          c.x = -180 - Math.random() * 120;
+          c.y = 40 + Math.random() * (h * 0.62);
+          c.life = 0.05;
+        }
+      } else {
+        c.life += c.grow * dt;
+        if (c.life >= 1) {
+          c.life = 1;
+          if (Math.random() < 0.002) c.fading = true;
+        }
+      }
+
+      if (c.x - c.spread > w + 80) {
+        c.x = -200 - Math.random() * 100;
+        c.y = 40 + Math.random() * (h * 0.62);
+        c.life = 0.2 + Math.random() * 0.5;
+        c.fading = false;
+      }
+
+      drawCloud(c, ts);
+    }
+
+    window.requestAnimationFrame(tick);
+  }
+
+  resize();
+  seedClouds();
+  window.addEventListener("resize", function () {
+    resize();
+    seedClouds();
+  });
+  window.requestAnimationFrame(tick);
 })();
