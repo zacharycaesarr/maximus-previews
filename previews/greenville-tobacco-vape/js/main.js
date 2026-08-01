@@ -323,8 +323,11 @@
 
   function updateDock() {
     if (!dock) return;
-    if (window.scrollY > 220) dock.classList.add("is-shown");
+    var y = window.scrollY || 0;
+    if (y > 160) dock.classList.add("is-shown");
     else dock.classList.remove("is-shown");
+    if (y > 320) dock.classList.add("is-compact");
+    else dock.classList.remove("is-compact");
   }
 
   var shopbar = document.getElementById("shopbar");
@@ -386,7 +389,7 @@
   }
   if (helpClose) helpClose.addEventListener("click", closeHelp);
 
-  /* ---------- Realistic drifting cloud canvas ---------- */
+  /* ---------- Calm full-page cloud canvas ---------- */
   var canvas = document.getElementById("cloud-canvas");
   if (!canvas || reduceMotion) return;
 
@@ -396,38 +399,50 @@
   var w = 0;
   var h = 0;
   var last = 0;
+  var lastW = 0;
+  var lastH = 0;
 
-  function resize() {
-    w = window.innerWidth;
-    h = window.innerHeight;
+  function resize(forceSeed) {
+    var nextW = window.innerWidth;
+    var nextH = window.innerHeight;
+    w = nextW;
+    h = nextH;
     canvas.width = Math.floor(w * dpr);
     canvas.height = Math.floor(h * dpr);
     canvas.style.width = w + "px";
     canvas.style.height = h + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    var bigChange =
+      Math.abs(nextW - lastW) > 80 || Math.abs(nextH - lastH) > 120;
+    if (forceSeed || !clouds.length || bigChange) {
+      lastW = nextW;
+      lastH = nextH;
+      seedClouds();
+    }
   }
 
   function makePuff(base) {
     return {
       ox: (Math.random() - 0.5) * base.spread,
-      oy: (Math.random() - 0.5) * base.spread * 0.45,
-      r: base.r * (0.45 + Math.random() * 0.7),
+      oy: (Math.random() - 0.5) * base.spread * 0.4,
+      r: base.r * (0.5 + Math.random() * 0.55),
       phase: Math.random() * Math.PI * 2,
     };
   }
 
   function spawnCloud(seedX) {
-    var baseR = 55 + Math.random() * 90;
-    var puffCount = 6 + Math.floor(Math.random() * 5);
+    var baseR = 48 + Math.random() * 70;
+    var puffCount = 5 + Math.floor(Math.random() * 4);
     var c = {
-      x: typeof seedX === "number" ? seedX : Math.random() * (w + 400) - 200,
-      y: 40 + Math.random() * (h * 0.62),
-      speed: 0.08 + Math.random() * 0.16,
-      life: Math.random(),
-      grow: 0.00015 + Math.random() * 0.00025,
-      fading: Math.random() > 0.5,
-      alpha: 0.12 + Math.random() * 0.22,
-      spread: baseR * 1.6,
+      x: typeof seedX === "number" ? seedX : Math.random() * (w + 300) - 150,
+      y: 30 + Math.random() * Math.max(120, h - 60),
+      speed: 0.035 + Math.random() * 0.05,
+      life: 0.55 + Math.random() * 0.45,
+      grow: 0.00004 + Math.random() * 0.00006,
+      fading: false,
+      alpha: 0.14 + Math.random() * 0.16,
+      spread: baseR * 1.5,
       r: baseR,
       puffs: [],
       morph: Math.random() * Math.PI * 2,
@@ -438,28 +453,28 @@
 
   function seedClouds() {
     clouds = [];
-    var count = Math.max(7, Math.floor(w / 160));
+    var count = Math.max(10, Math.floor(w / 120));
     for (var i = 0; i < count; i++) clouds.push(spawnCloud());
   }
 
   function drawCloud(c, t) {
-    var breathe = 1 + Math.sin(t * 0.0004 + c.morph) * 0.06;
+    var breathe = 1 + Math.sin(t * 0.00025 + c.morph) * 0.035;
     var a = c.alpha * c.life;
-    if (a <= 0.01) return;
+    if (a <= 0.02) return;
 
     ctx.save();
     ctx.translate(c.x, c.y);
     ctx.globalAlpha = a;
     ctx.fillStyle = "#ffffff";
-    ctx.shadowColor = "rgba(255,255,255,0.55)";
-    ctx.shadowBlur = 24;
+    ctx.shadowColor = "rgba(255,255,255,0.4)";
+    ctx.shadowBlur = 18;
 
     for (var i = 0; i < c.puffs.length; i++) {
       var p = c.puffs[i];
-      var wriggle = Math.sin(t * 0.0007 + p.phase) * 4;
-      var rr = p.r * breathe * (0.92 + Math.sin(t * 0.0005 + p.phase) * 0.08);
+      var wriggle = Math.sin(t * 0.00035 + p.phase) * 2.2;
+      var rr = p.r * breathe;
       ctx.beginPath();
-      ctx.ellipse(p.ox + wriggle, p.oy + wriggle * 0.4, rr * 1.15, rr * 0.78, 0, 0, Math.PI * 2);
+      ctx.ellipse(p.ox + wriggle, p.oy, rr * 1.12, rr * 0.76, 0, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.restore();
@@ -467,36 +482,34 @@
 
   function tick(ts) {
     if (!last) last = ts;
-    var dt = Math.min(40, ts - last);
+    var raw = ts - last;
     last = ts;
+    // hard cap stops mobile scroll frame spikes from flinging clouds
+    var dt = Math.min(22, Math.max(0, raw));
 
     ctx.clearRect(0, 0, w, h);
 
     for (var i = 0; i < clouds.length; i++) {
       var c = clouds[i];
-      c.x += c.speed * (dt * 0.06);
-      c.morph += dt * 0.0004;
+      c.x += c.speed * (dt * 0.045);
+      c.morph += dt * 0.0002;
 
       if (c.fading) {
         c.life -= c.grow * dt;
-        if (c.life <= 0.05) {
+        if (c.life <= 0.35) {
           c.fading = false;
-          c.x = -180 - Math.random() * 120;
-          c.y = 40 + Math.random() * (h * 0.62);
-          c.life = 0.05;
         }
-      } else {
+      } else if (c.life < 1) {
         c.life += c.grow * dt;
-        if (c.life >= 1) {
-          c.life = 1;
-          if (Math.random() < 0.002) c.fading = true;
-        }
+        if (c.life > 1) c.life = 1;
+      } else if (Math.random() < 0.0004) {
+        c.fading = true;
       }
 
-      if (c.x - c.spread > w + 80) {
-        c.x = -200 - Math.random() * 100;
-        c.y = 40 + Math.random() * (h * 0.62);
-        c.life = 0.2 + Math.random() * 0.5;
+      if (c.x - c.spread > w + 60) {
+        c.x = -160 - Math.random() * 80;
+        c.y = 30 + Math.random() * Math.max(120, h - 60);
+        c.life = 0.6 + Math.random() * 0.4;
         c.fading = false;
       }
 
@@ -506,11 +519,9 @@
     window.requestAnimationFrame(tick);
   }
 
-  resize();
-  seedClouds();
+  resize(true);
   window.addEventListener("resize", function () {
-    resize();
-    seedClouds();
+    resize(false);
   });
   window.requestAnimationFrame(tick);
 })();
