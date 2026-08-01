@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Greenville Tobacco &amp; Vape | Staunton</title>
+    <meta
+      name="description"
+      content="Staunton's #1 tobacco and vape spot. Preview for Greenville Tobacco & Vape."
+    />
+    <meta name="theme-color" content="#4aa8d8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="sky" aria-hidden="true">
+      <div class="sky__wash"></div>
+      <div class="sky__noise"></div>
+      <div class="cloud cloud--a" data-drift></div>
+      <div class="cloud cloud--b" data-drift></div>
+      <div class="cloud cloud--c" data-drift></div>
+      <div class="mist mist--low"></div>
+    </div>
+
+    <div class="agegate" id="agegate" role="dialog" aria-modal="true" aria-labelledby="agegate-title">
+      <div class="agegate__panel">
+        <img
+          class="agegate__logo"
+          src="assets/logo-cloud.svg"
+          width="320"
+          height="98"
+          alt="Greenville Tobacco &amp; Vape"
+        />
+        <h1 id="agegate-title">Are you 21 or older?</h1>
+        <p>You have to be 21+ to enter. We check ID on every nicotine purchase.</p>
+        <div class="agegate__actions">
+          <button type="button" class="btn btn--solid" id="age-enter">Yep, I am</button>
+          <button type="button" class="btn btn--ghost" id="age-exit">No, take me out</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="topbar">
+      <a class="topbar__brand" href="#top" aria-label="Greenville Tobacco and Vape home">
+        <img src="assets/logo-cloud.svg" width="148" height="45" alt="" />
+      </a>
+      <nav class="topbar__nav" aria-label="Page">
+        <a href="#categories">Shop</a>
+        <a href="#order-ahead">Order</a>
+        <a href="#visit">Visit</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero__logo-wrap">
+          <img
+            class="hero__logo"
+            src="assets/logo-cloud.svg"
+            width="420"
+            height="128"
+            alt="Greenville Tobacco &amp; Vape"
+          />
+        </div>
+        <p class="hero__hours">Open daily 7AM to 11PM</p>
+        <h2 class="hero__slogan">Staunton's #1 tobacco and vape spot</h2>
+        <p class="hero__lead">
+          Local shop on Greenville Ave. Fresh stock, straight talk, and soon: order ahead for pickup.
+        </p>
+        <div class="hero__ctas">
+          <a class="btn btn--solid" href="#categories">Shop Categories</a>
+          <a class="btn btn--soft" href="#order-ahead">Order Ahead</a>
+        </div>
+      </section>
+
+      <section class="section reveal" id="categories">
+        <div class="section__head">
+          <h2>Shop by category</h2>
+          <p>Tap a lane. This is a preview, so it shows the flow, not a live cart yet.</p>
+        </div>
+        <div class="chip-row" role="list">
+          <button type="button" class="chip chip--sun" data-cat="disposables" role="listitem">
+            Disposables
+          </button>
+          <button type="button" class="chip chip--sky" data-cat="devices" role="listitem">
+            Devices
+          </button>
+          <button type="button" class="chip chip--mint" data-cat="eliquid" role="listitem">
+            E-Liquid
+          </button>
+          <button type="button" class="chip chip--rose" data-cat="pouches" role="listitem">
+            Nic Pouches
+          </button>
+          <button type="button" class="chip chip--lilac" data-cat="coils" role="listitem">
+            Coils
+          </button>
+          <button type="button" class="chip chip--sand" data-cat="accessories" role="listitem">
+            Accessories
+          </button>
+        </div>
+      </section>
+
+      <section class="section section--tight reveal" id="brands">
+        <div class="section__head">
+          <h2>Brands on the shelf</h2>
+          <p>Names you already know, stocked local.</p>
+        </div>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <span>Geek Bar</span>
+            <span>Lost Mary</span>
+            <span>Zyn</span>
+            <span>Vaporesso</span>
+            <span>Juice Head</span>
+            <span>Elf Bar</span>
+            <span>SMOK</span>
+            <span>Naked 100</span>
+            <span>Geek Bar</span>
+            <span>Lost Mary</span>
+            <span>Zyn</span>
+            <span>Vaporesso</span>
+            <span>Juice Head</span>
+            <span>Elf Bar</span>
+            <span>SMOK</span>
+            <span>Naked 100</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="bestsellers">
+        <div class="section__head">
+          <h2>Moving fast this week</h2>
+          <p>Placeholder picks so you can feel the swipe. Real inventory comes later.</p>
+        </div>
+        <div class="product-rail" tabindex="0" aria-label="Best sellers">
+          <article class="product">
+            <div class="product__art product__art--a" aria-hidden="true"></div>
+            <h3>Cool Mint Pouches 6mg</h3>
+            <p>Can of 15. Everyday mint that stays clean.</p>
+            <div class="product__row">
+              <span class="product__price">$5.99</span>
+              <div class="product__actions">
+                <button type="button" class="btn btn--mini btn--solid" data-demo-toast="Added to demo order">
+                  Add
+                </button>
+                <button type="button" class="btn btn--mini btn--ghost" data-demo-toast="Explore opens in the full build">
+                  Explore
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="product__art product__art--b" aria-hidden="true"></div>
+            <h3>Blue Razz Disposable</h3>
+            <p>Sweet, cold, and gone before you know it.</p>
+            <div class="product__row">
+              <span class="product__price">$16.99</span>
+              <div class="product__actions">
+                <button type="button" class="btn btn--mini btn--solid" data-demo-toast="Added to demo order">
+                  Add
+                </button>
+                <button type="button" class="btn btn--mini btn--ghost" data-demo-toast="Explore opens in the full build">
+                  Explore
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="product__art product__art--c" aria-hidden="true"></div>
+            <h3>Tobacco Reserve 60ml</h3>
+            <p>Smooth bottle juice for the rebuild crowd.</p>
+            <div class="product__row">
+              <span class="product__price">$19.99</span>
+              <div class="product__actions">
+                <button type="button" class="btn btn--mini btn--solid" data-demo-toast="Added to demo order">
+                  Add
+                </button>
+                <button type="button" class="btn btn--mini btn--ghost" data-demo-toast="Explore opens in the full build">
+                  Explore
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="product__art product__art--d" aria-hidden="true"></div>
+            <h3>Compact Pod Kit</h3>
+            <p>Pocket size, solid draw, easy pods.</p>
+            <div class="product__row">
+              <span class="product__price">$29.99</span>
+              <div class="product__actions">
+                <button type="button" class="btn btn--mini btn--solid" data-demo-toast="Added to demo order">
+                  Add
+                </button>
+                <button type="button" class="btn btn--mini btn--ghost" data-demo-toast="Explore opens in the full build">
+                  Explore
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="order-ahead">
+        <div class="section__head">
+          <h2>Order ahead. Pick up in store.</h2>
+          <p>
+            No shipping. You order online, show a QR at the counter, grab your bag. ID checked at pickup.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <span class="steps__num">1</span>
+            <div>
+              <strong>Pick your stuff</strong>
+              <p>Browse categories and drop items in your order.</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__num">2</span>
+            <div>
+              <strong>Checkout for pickup</strong>
+              <p>Pay ahead or pay in store. Your call when we build it for real.</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__num">3</span>
+            <div>
+              <strong>Show the QR</strong>
+              <p>We scan it, pull the order, you walk out. Fast lane energy.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="qr-demo" id="qr-demo">
+          <div class="qr-demo__front">
+            <p class="qr-demo__label">Pickup demo</p>
+            <h3>Tap to flip your sample QR</h3>
+            <p>This is a fake order so you can see the idea. Real codes come after checkout.</p>
+            <button type="button" class="btn btn--solid" id="qr-flip">Show my QR</button>
+          </div>
+          <div class="qr-demo__back" hidden>
+            <p class="qr-demo__label">Order GTV-4821</p>
+            <div class="qr-code" id="qr-code" aria-hidden="true"></div>
+            <p class="qr-demo__meta">Cool Mint Pouches + Blue Razz · Ready for pickup</p>
+            <p class="qr-demo__note">Staff scans this. You show ID. Done.</p>
+            <button type="button" class="btn btn--soft" id="qr-reset">Flip back</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="reviews">
+        <div class="section__head">
+          <h2>What locals say</h2>
+          <p>Short and real. The kind of talk you hear at the counter.</p>
+        </div>
+        <div class="review-rail" aria-label="Reviews">
+          <article class="review">
+            <div class="review__top">
+              <span class="review__avatar" aria-hidden="true">M</span>
+              <div>
+                <strong>Marcus</strong>
+                <span>Staunton</span>
+              </div>
+              <span class="review__stars" aria-label="5 stars">★★★★★</span>
+            </div>
+            <p>Been coming here for years. They always have the pouches I want and they don't waste your time.</p>
+          </article>
+          <article class="review">
+            <div class="review__top">
+              <span class="review__avatar review__avatar--b" aria-hidden="true">A</span>
+              <div>
+                <strong>Ashley</strong>
+                <span>Waynesboro</span>
+              </div>
+              <span class="review__stars" aria-label="5 stars">★★★★★</span>
+            </div>
+            <p>Open late when I need something after work. Staff actually knows the products.</p>
+          </article>
+          <article class="review">
+            <div class="review__top">
+              <span class="review__avatar review__avatar--c" aria-hidden="true">J</span>
+              <div>
+                <strong>Jay</strong>
+                <span>Staunton</span>
+              </div>
+              <span class="review__stars" aria-label="5 stars">★★★★★</span>
+            </div>
+            <p>If they add order ahead I'm never waiting in a rush again. Already my go to spot.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="visit">
+        <div class="section__head">
+          <h2>Come through</h2>
+          <p>Right on Greenville Ave. Easy in, easy out.</p>
+        </div>
+        <div class="visit-card">
+          <div class="visit-card__map" aria-hidden="true">
+            <div class="visit-card__pin"></div>
+            <span>840 Greenville Ave</span>
+          </div>
+          <div class="visit-card__info">
+            <h3>Greenville Tobacco &amp; Vape</h3>
+            <p>840 Greenville Ave<br />Staunton, VA 24401</p>
+            <ul>
+              <li><span>Hours</span> Daily 7AM to 11PM</li>
+              <li>
+                <span>Phone</span>
+                <a href="tel:+15404904614">(540) 490-4614</a>
+              </li>
+              <li>
+                <span>IG</span>
+                <a
+                  href="https://www.instagram.com/greenville_tobacco_vape/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >@greenville_tobacco_vape</a
+                >
+              </li>
+            </ul>
+            <div class="visit-card__actions">
+              <a class="btn btn--solid" href="tel:+15404904614">Call</a>
+              <a
+                class="btn btn--soft"
+                href="https://maps.google.com/?q=840+Greenville+Ave,+Staunton,+VA+24401"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Directions</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <p>Preview for Greenville Tobacco &amp; Vape · Built by Maximus Marketing</p>
+      <p class="site-foot__fine">Must be 21+. Nicotine products are age restricted.</p>
+    </footer>
+
+    <nav class="dock" aria-label="Quick actions">
+      <a class="dock__btn" href="tel:+15404904614">
+        <span class="dock__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.36 2.3.56 3.5.56a1 1 0 011 1V20a1 1 0 01-1 1C10.4 21 3 13.6 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.2.2 2.4.56 3.5a1 1 0 01-.25 1L6.6 10.8z"/></svg>
+        </span>
+        Call
+      </a>
+      <a
+        class="dock__btn"
+        href="https://maps.google.com/?q=840+Greenville+Ave,+Staunton,+VA+24401"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="dock__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>
+        </span>
+        Directions
+      </a>
+      <a class="dock__btn dock__btn--main" href="#order-ahead">
+        <span class="dock__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4 4h4l.4 2H20a1 1 0 01.96 1.27l-1.5 5A1 1 0 0118.5 13H8.1l.3 1.5H18v2H7.4L5.2 4H4V2H2v2h2zm2.2 14.5a1.75 1.75 0 103.5 0 1.75 1.75 0 00-3.5 0zm10 0a1.75 1.75 0 103.5 0 1.75 1.75 0 00-3.5 0z"/></svg>
+        </span>
+        Order Ahead
+      </a>
+    </nav>
+
+    <div class="sheet" id="sheet" hidden>
+      <div class="sheet__backdrop" data-close-sheet></div>
+      <div
+        class="sheet__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sheet-title"
+        tabindex="-1"
+      >
+        <div class="sheet__handle" aria-hidden="true"></div>
+        <h3 id="sheet-title">Category</h3>
+        <p id="sheet-body">Details</p>
+        <button type="button" class="btn btn--solid sheet__cta" data-close-sheet>
+          Got it
+        </button>
+        <button type="button" class="sheet__x" data-close-sheet aria-label="Close">×</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

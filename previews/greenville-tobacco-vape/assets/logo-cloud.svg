@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-label="Greenville Tobacco and Vape">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#6ecaf0"/>
+      <stop offset="45%" stop-color="#45b0e0"/>
+      <stop offset="100%" stop-color="#2f94c6"/>
+    </linearGradient>
+    <filter id="puff" x="-5%" y="-20%" width="110%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.1" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="lift" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3.5" flood-color="#14506e" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="720" height="220" rx="32" fill="url(#sky)"/>
+  <!-- soft cloud clusters behind type -->
+  <g fill="#ffffff" opacity="0.22">
+    <circle cx="70" cy="70" r="28"/>
+    <circle cx="98" cy="58" r="22"/>
+    <circle cx="118" cy="78" r="20"/>
+    <circle cx="620" cy="64" r="26"/>
+    <circle cx="650" cy="78" r="22"/>
+    <circle cx="590" cy="86" r="18"/>
+    <circle cx="160" cy="170" r="20"/>
+    <circle cx="540" cy="168" r="24"/>
+  </g>
+  <g filter="url(#lift)">
+    <text
+      x="360"
+      y="92"
+      text-anchor="middle"
+      font-family="Arial Black, Impact, sans-serif"
+      font-size="68"
+      font-weight="900"
+      letter-spacing="7"
+      fill="#ffffff"
+      filter="url(#puff)"
+    >GREENVILLE</text>
+    <text
+      x="360"
+      y="156"
+      text-anchor="middle"
+      font-family="Arial Black, Impact, sans-serif"
+      font-size="40"
+      font-weight="900"
+      letter-spacing="9"
+      fill="#ffffff"
+      filter="url(#puff)"
+    >TOBACCO &amp; VAPE</text>
+  </g>
+</svg>

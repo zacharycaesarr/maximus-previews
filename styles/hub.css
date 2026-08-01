@@ -1,0 +1,122 @@
+:root {
+  --ink: #142033;
+  --muted: #5a6b7d;
+  --sky: #4aa8d8;
+  --sky-soft: #d7eef8;
+  --paper: #f4f9fc;
+  --card: #ffffff;
+  --line: rgba(20, 32, 51, 0.08);
+  --shadow: 0 14px 40px rgba(40, 90, 130, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Figtree", system-ui, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #ccecf9 0%, transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, #e8f6fd 0%, transparent 45%),
+    linear-gradient(180deg, #eef7fb 0%, var(--paper) 100%);
+}
+
+.wrap {
+  width: min(920px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3.5rem 0 4rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 2.5rem;
+}
+
+.brand__mark {
+  font-family: "Outfit", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  letter-spacing: -0.03em;
+}
+
+.brand__mark span {
+  color: var(--sky);
+}
+
+.brand__sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 36ch;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 1.35rem 1.4rem 1.45rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px rgba(40, 90, 130, 0.16);
+  outline: none;
+}
+
+.card__eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 0.55rem;
+}
+
+.card h2 {
+  margin: 0 0 0.4rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.card__go {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.foot {
+  margin-top: 2.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
