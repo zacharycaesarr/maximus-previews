@@ -5,40 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maximus Previews</title>
     <meta name="description" content="Mockup previews for Maximus Marketing." />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Sora:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400;1,900&family=Inter:wght@200;300;400;500&family=DM+Mono:wght@300;400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/hub.css" />
   </head>
   <body>
+    <div class="bg" aria-hidden="true">
+      <div class="bg__blob bg__blob--1"></div>
+      <div class="bg__blob bg__blob--2"></div>
+      <div class="bg__grid"></div>
+    </div>
+
     <main class="wrap">
       <header class="brand">
-        <div class="brand__mark">Maximus <span>Previews</span></div>
-        <p class="brand__sub">
-          Quick mockup links for client pitches. Open on your phone for the real feel.
-        </p>
+        <div class="brand__mark" aria-hidden="true">
+          <img src="assets/mm-logo.svg" width="42" height="48" alt="" />
+        </div>
+        <p class="brand__by">Zachary Maximus</p>
+        <h1 class="brand__title">
+          <span class="brand__title-main">Maximus</span>
+          <span class="brand__title-sub">Previews</span>
+        </h1>
+        <p class="brand__sub">Mockups for Greenville tobacco!</p>
       </header>
 
       <section class="grid" aria-label="Available previews">
         <a class="card" href="previews/greenville-tobacco-vape/">
-          <span class="card__eyebrow">Staunton, VA · Cloud</span>
+          <div class="card__meta">
+            <span class="card__eyebrow">Staunton, VA · Cloud</span>
+            <span class="card__go">Open <span aria-hidden="true">↗</span></span>
+          </div>
           <h2>Greenville Tobacco &amp; Vape</h2>
           <p>Light cloud theme, order ahead QR pickup, mobile first shop preview.</p>
-          <span class="card__go">Open cloud preview</span>
         </a>
         <a class="card" href="previews/greenville-tobacco-vape/industrial/">
-          <span class="card__eyebrow">Staunton, VA · Industrial</span>
+          <div class="card__meta">
+            <span class="card__eyebrow">Staunton, VA · Industrial</span>
+            <span class="card__go">Open <span aria-hidden="true">↗</span></span>
+          </div>
           <h2>Greenville Dark Alternate</h2>
           <p>Moody dark mode with copper accents, product grid, and express pickup.</p>
-          <span class="card__go">Open industrial preview</span>
         </a>
       </section>
 
-      <p class="foot">Share hub: previews.maximus.baby</p>
-      <p class="foot">Maximus Marketing</p>
+      <p class="foot">
+        <span>Digital Growth</span>
+        <span aria-hidden="true">·</span>
+        <span>Web Development</span>
+        <span aria-hidden="true">·</span>
+        <span>Ad Management</span>
+      </p>
+      <p class="foot foot--soft">Maximus Marketing</p>
     </main>
   </body>
 </html>

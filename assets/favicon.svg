@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Maximus Marketing">
+  <rect width="32" height="32" rx="7" fill="#2C2520"/>
+  <g fill="#FCFAF2" transform="translate(5.2,3.2) scale(0.168)">
+    <path fill-rule="evenodd" d="M 0,1 L 0,111 L 18,97 L 19,37 L 64,68 L 108,37 L 109,97 L 128,111 L 128,1 L 65,43 Z M 28,58 L 28,104 L 0,125 L 0,149 L 44,115 L 45,93 L 63,105 L 82,93 L 83,115 L 128,148 L 128,125 L 99,104 L 99,58 L 65,83 Z"/>
+  </g>
+</svg>
