@@ -91,4 +91,36 @@
       showToast("Sample pickup QR ready");
     });
   }
+
+  /* Scroll / enter reveals */
+  var nodes = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && nodes.length) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+    );
+    nodes.forEach(function (el) {
+      io.observe(el);
+    });
+  } else {
+    nodes.forEach(function (el) {
+      el.classList.add("is-in");
+    });
+  }
+
+  /* Soft enter on first paint for above-the-fold hero bits */
+  window.requestAnimationFrame(function () {
+    document.querySelectorAll(".hero .reveal").forEach(function (el, i) {
+      window.setTimeout(function () {
+        el.classList.add("is-in");
+      }, 120 + i * 90);
+    });
+  });
 })();

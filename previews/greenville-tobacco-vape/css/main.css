@@ -765,13 +765,16 @@ body.hero-ready .promo-duo {
 .gold-num {
   position: relative;
   display: inline-block;
-  margin-left: 0.05em;
+  margin-left: 0.08em;
 }
 
 .gold-num__text {
-  display: inline-block;
+  display: inline-flex;
+  align-items: baseline;
+  font-family: "Arial Black", "Arial Bold", Impact, "Helvetica Neue", sans-serif;
   font-weight: 900;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
+  line-height: 1;
   background-image: linear-gradient(
     165deg,
     #fff4c2 0%,
@@ -785,12 +788,26 @@ body.hero-ready .promo-duo {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 1.25px rgba(120, 78, 10, 0.55);
+  -webkit-text-stroke: 0.6px rgba(90, 55, 5, 0.45);
+  paint-order: stroke fill;
   filter:
-    drop-shadow(0 1px 0 rgba(255, 245, 200, 0.85))
+    drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.95))
+    drop-shadow(0 1px 0 rgba(255, 245, 200, 0.9))
     drop-shadow(0 2px 0 rgba(140, 90, 10, 0.35))
     drop-shadow(0 4px 8px rgba(180, 120, 20, 0.28));
   animation: gold-shimmer 3.8s ease-in-out infinite;
+}
+
+.gold-num__hash {
+  font-family: "Arial Black", Impact, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0;
+  margin-right: 0.02em;
+}
+
+.gold-num__one {
+  font-family: "Arial Black", Impact, sans-serif;
+  font-weight: 900;
 }
 
 @keyframes gold-shimmer {
@@ -1033,8 +1050,17 @@ body.hero-ready .promo-duo {
   box-shadow: 0 4px 10px rgba(40, 80, 110, 0.1);
 }
 
-.lane__icon svg {
+.lane__icon svg,
+.lane__icon img {
   display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.lane__icon img {
+  filter: brightness(0) saturate(100%);
+  opacity: 0.78;
 }
 
 .lane__tag {

@@ -16,7 +16,7 @@
   </head>
   <body>
     <div class="agegate" id="agegate" role="dialog" aria-modal="true" aria-labelledby="age-title">
-      <div class="agegate__card">
+      <div class="agegate__card reveal-in">
         <p class="badge">Verified Age 21+</p>
         <h1 id="age-title">Are you 21 or older?</h1>
         <p>ID checked in store on every nicotine purchase.</p>
@@ -28,25 +28,35 @@
     </div>
 
     <header class="site-head">
-      <div class="site-head__brand">
-        <p class="site-head__logo">Greenville Tobacco &amp; Vape</p>
-        <p class="site-head__tag">Staunton's go-to for vapor &amp; glass</p>
-      </div>
-      <nav class="site-head__nav" aria-label="Primary">
-        <a href="#grid">Shop</a>
-        <a href="#order">Order Ahead</a>
-        <a href="#brands">Our Brands</a>
-        <a href="#find">Find Us</a>
-      </nav>
-      <div class="site-head__meta">
-        <span class="pill">Tobacco Compliant Shop</span>
-        <span class="cart" id="cart-wrap">Cart <strong id="cart-count">0</strong></span>
+      <div class="site-head__inner">
+        <div class="site-head__brand">
+          <p class="site-head__logo">Greenville Tobacco &amp; Vape</p>
+          <p class="site-head__tag">Staunton · Greenville Ave</p>
+        </div>
+        <nav class="site-head__nav" aria-label="Primary">
+          <a href="#grid">Shop</a>
+          <a href="#order">Order Ahead</a>
+          <a href="#brands">Brands</a>
+          <a href="#find">Find Us</a>
+        </nav>
+        <div class="site-head__meta">
+          <span class="pill">21+ Compliant</span>
+          <button type="button" class="cart-btn" id="cart-wrap" aria-label="Cart">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M7 18a2 2 0 110 4 2 2 0 010-4zm10 0a2 2 0 110 4 2 2 0 010-4zM7.2 14h9.7a1 1 0 00.97-.76L20 6H6.2L5.3 3H2v2h2l3.6 7.6L6.2 15a1 1 0 001 1.4H19v-2H7.4l.8-1.4z"
+              />
+            </svg>
+            <span class="cart-btn__badge" id="cart-count">0</span>
+          </button>
+        </div>
       </div>
     </header>
 
     <main>
       <section class="hero">
-        <div class="hero__copy">
+        <div class="hero__copy reveal">
           <p class="eyebrow">Staunton, VA · Greenville Ave</p>
           <h1>Explore the vapor.<br />Own the glass.</h1>
           <p class="hero__lead">
@@ -58,81 +68,127 @@
           </div>
           <p class="badge badge--inline">Verified Age 21+</p>
         </div>
-        <div class="hero__stage" aria-hidden="true">
-          <img src="../assets/products/the-clear.webp" alt="" width="220" height="360" />
+        <div class="hero__stage reveal" aria-hidden="true">
+          <img src="assets/products/the-clear.webp" alt="" width="220" height="360" />
           <div class="hero__glow"></div>
         </div>
       </section>
 
       <section class="section" id="grid">
-        <div class="section__head">
+        <div class="section__head reveal">
           <p class="eyebrow">Featured</p>
           <h2>On the slate tonight</h2>
         </div>
         <div class="product-grid">
-          <article class="pcard">
+          <article class="pcard reveal">
             <div class="pcard__media pcard__media--wood">
-              <img src="../assets/products/blue-razz.webp" alt="Blue Razz disposable" />
+              <span class="pcard__sale">Sale</span>
+              <img src="assets/products/blue-razz.webp" alt="Blue Razz disposable" />
+            </div>
+            <div class="pcard__bar">
+              <span class="pcard__bar-name">Blue Razz</span>
+              <span class="pcard__bar-type pcard__bar-type--starter">Starter</span>
             </div>
             <div class="pcard__body">
-              <p class="pcard__cat">Featured Disposables</p>
+              <div class="pcard__stars" aria-label="5 out of 5 stars">
+                <span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span>
+                <span class="pcard__reviews">(12)</span>
+              </div>
               <h3>Blue Razz Disposable</h3>
-              <p class="pcard__price">$16.99</p>
+              <p class="pcard__price"><strong>$16.99</strong> <s>$19.99</s></p>
               <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
             </div>
           </article>
-          <article class="pcard">
+          <article class="pcard reveal">
             <div class="pcard__media pcard__media--concrete">
-              <img src="../assets/products/nicotine-pouches.webp" alt="Cool Mint pouches" />
+              <span class="pcard__sale">Sale</span>
+              <img src="assets/products/nicotine-pouches.webp" alt="Cool Mint pouches" />
+            </div>
+            <div class="pcard__bar">
+              <span class="pcard__bar-name">Cool Mint</span>
+              <span class="pcard__bar-type pcard__bar-type--daily">Daily</span>
             </div>
             <div class="pcard__body">
-              <p class="pcard__cat">Zyn &amp; Nic Pouches</p>
+              <div class="pcard__stars" aria-label="5 out of 5 stars">
+                <span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span>
+                <span class="pcard__reviews">(28)</span>
+              </div>
               <h3>Cool Mint Can of 20</h3>
-              <p class="pcard__price">$5.99</p>
+              <p class="pcard__price"><strong>$5.99</strong> <s>$7.49</s></p>
               <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
             </div>
           </article>
-          <article class="pcard">
+          <article class="pcard reveal">
             <div class="pcard__media pcard__media--slate">
-              <img src="../assets/products/the-clear.webp" alt="The Clear" />
+              <img src="assets/products/the-clear.webp" alt="The Clear" />
+            </div>
+            <div class="pcard__bar">
+              <span class="pcard__bar-name">The Clear</span>
+              <span class="pcard__bar-type pcard__bar-type--advanced">Advanced</span>
             </div>
             <div class="pcard__body">
-              <p class="pcard__cat">Premium Mods</p>
+              <div class="pcard__stars" aria-label="4 out of 5 stars">
+                <span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star">★</span>
+                <span class="pcard__reviews">(9)</span>
+              </div>
               <h3>The Clear</h3>
-              <p class="pcard__price">$34.99</p>
+              <p class="pcard__price"><strong>$34.99</strong></p>
               <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
             </div>
           </article>
-          <article class="pcard">
+          <article class="pcard reveal">
             <div class="pcard__media pcard__media--wood">
-              <img src="../assets/brands/geekbarlogo.webp" alt="" class="pcard__logo" />
+              <span class="pcard__sale">Sale</span>
+              <img src="assets/brands/geekbarlogo.webp" alt="" class="pcard__logo" />
+            </div>
+            <div class="pcard__bar">
+              <span class="pcard__bar-name">Geek Bar</span>
+              <span class="pcard__bar-type pcard__bar-type--starter">Starter</span>
             </div>
             <div class="pcard__body">
-              <p class="pcard__cat">E-Liquid Gallery</p>
+              <div class="pcard__stars" aria-label="5 out of 5 stars">
+                <span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span>
+                <span class="pcard__reviews">(21)</span>
+              </div>
               <h3>Geek Bar Lane</h3>
-              <p class="pcard__price">From $18.99</p>
+              <p class="pcard__price"><strong>$18.99</strong> <s>$22.99</s></p>
               <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
             </div>
           </article>
-          <article class="pcard">
+          <article class="pcard reveal">
             <div class="pcard__media pcard__media--concrete">
-              <img src="../assets/brands/smok_logo.webp" alt="" class="pcard__logo" />
+              <img src="assets/brands/smok_logo.webp" alt="" class="pcard__logo" />
+            </div>
+            <div class="pcard__bar">
+              <span class="pcard__bar-name">SMOK</span>
+              <span class="pcard__bar-type pcard__bar-type--advanced">Advanced</span>
             </div>
             <div class="pcard__body">
-              <p class="pcard__cat">Glass Art</p>
+              <div class="pcard__stars" aria-label="4 out of 5 stars">
+                <span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star">★</span>
+                <span class="pcard__reviews">(7)</span>
+              </div>
               <h3>SMOK Hardware</h3>
-              <p class="pcard__price">Ask in store</p>
+              <p class="pcard__price"><strong>Ask in store</strong></p>
               <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
             </div>
           </article>
-          <article class="pcard">
+          <article class="pcard reveal">
             <div class="pcard__media pcard__media--slate">
-              <img src="../assets/brands/ZYN_Logo_1.webp" alt="" class="pcard__logo" />
+              <span class="pcard__sale">Sale</span>
+              <img src="assets/brands/ZYN_Logo_1.webp" alt="" class="pcard__logo" />
+            </div>
+            <div class="pcard__bar">
+              <span class="pcard__bar-name">Zyn</span>
+              <span class="pcard__bar-type pcard__bar-type--daily">Daily</span>
             </div>
             <div class="pcard__body">
-              <p class="pcard__cat">Zyn &amp; Nic Pouches</p>
+              <div class="pcard__stars" aria-label="5 out of 5 stars">
+                <span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span><span class="pcard__star is-on">★</span>
+                <span class="pcard__reviews">(34)</span>
+              </div>
               <h3>Zyn Shelf Picks</h3>
-              <p class="pcard__price">From $4.99</p>
+              <p class="pcard__price"><strong>$4.99</strong> <s>$6.49</s></p>
               <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
             </div>
           </article>
@@ -140,27 +196,27 @@
       </section>
 
       <section class="section" id="brands">
-        <div class="section__head">
+        <div class="section__head reveal">
           <p class="eyebrow">Partners</p>
           <h2>Top-tier brands on the shelf</h2>
         </div>
         <div class="brand-grid">
-          <div class="brand-tile brand-tile--feature">
+          <div class="brand-tile brand-tile--feature reveal">
             <span class="brand-tile__badge">Featured Partner</span>
-            <img src="../assets/brands/geekbarlogo.webp" alt="Geek Bar" />
+            <img src="assets/brands/geekbarlogo.webp" alt="Geek Bar" />
           </div>
-          <div class="brand-tile"><img src="../assets/brands/lostmary_logo.webp" alt="Lost Mary" /></div>
-          <div class="brand-tile"><img src="../assets/brands/ZYN_Logo_1.webp" alt="Zyn" /></div>
-          <div class="brand-tile"><img src="../assets/brands/elfbar_logo.webp" alt="Elf Bar" /></div>
-          <div class="brand-tile"><img src="../assets/brands/smok_logo.webp" alt="SMOK" /></div>
-          <div class="brand-tile"><img src="../assets/brands/vaporesso-logo.webp" alt="Vaporesso" /></div>
-          <div class="brand-tile"><img src="../assets/brands/nakedlogo.webp" alt="Naked 100" /></div>
-          <div class="brand-tile"><img src="../assets/brands/juicehead.webp" alt="Juice Head" /></div>
+          <div class="brand-tile reveal"><img src="assets/brands/lostmary_logo.webp" alt="Lost Mary" /></div>
+          <div class="brand-tile reveal"><img src="assets/brands/ZYN_Logo_1.webp" alt="Zyn" /></div>
+          <div class="brand-tile reveal"><img src="assets/brands/elfbar_logo.webp" alt="Elf Bar" /></div>
+          <div class="brand-tile reveal"><img src="assets/brands/smok_logo.webp" alt="SMOK" /></div>
+          <div class="brand-tile reveal"><img src="assets/brands/vaporesso-logo.webp" alt="Vaporesso" /></div>
+          <div class="brand-tile reveal"><img src="assets/brands/nakedlogo.webp" alt="Naked 100" /></div>
+          <div class="brand-tile reveal"><img src="assets/brands/juicehead.webp" alt="Juice Head" /></div>
         </div>
       </section>
 
       <section class="section order" id="order">
-        <div class="order__panel">
+        <div class="order__panel reveal">
           <p class="eyebrow eyebrow--copper">Order Ahead</p>
           <h2>Express pickup. Online reservations. Strict ID compliance. No lines.</h2>
           <ol class="order__steps">
@@ -180,22 +236,22 @@
       </section>
 
       <section class="section" id="voices">
-        <div class="section__head">
+        <div class="section__head reveal">
           <p class="eyebrow">Customer Voices</p>
           <h2>From the counter</h2>
         </div>
         <div class="voices">
-          <article class="voice">
+          <article class="voice reveal">
             <p class="voice__stars">★★★★★</p>
             <p>Been coming here for years. They always have the pouches I want and they don't waste your time.</p>
             <strong>Blake · Staunton</strong>
           </article>
-          <article class="voice">
+          <article class="voice reveal">
             <p class="voice__stars">★★★★★</p>
             <p>Open late when I need something after work. Staff actually knows the products.</p>
             <strong>Rachel · Waynesboro</strong>
           </article>
-          <article class="voice">
+          <article class="voice reveal">
             <p class="voice__stars">★★★★★</p>
             <p>If they add Order Ahead I'm never waiting in a rush again. Already my go to spot.</p>
             <strong>Isa · Staunton</strong>
@@ -204,11 +260,11 @@
       </section>
 
       <section class="section find" id="find">
-        <div class="section__head">
+        <div class="section__head reveal">
           <p class="eyebrow">Find Us in Staunton</p>
           <h2>Open daily</h2>
         </div>
-        <div class="find__map">
+        <div class="find__map reveal">
           <iframe
             title="Greenville Tobacco and Vape map"
             loading="lazy"
@@ -216,7 +272,7 @@
             src="https://maps.google.com/maps?q=840%20Greenville%20Ave%2C%20Staunton%2C%20VA%2024401&z=16&output=embed"
           ></iframe>
         </div>
-        <div class="find__info">
+        <div class="find__info reveal">
           <p><strong>Greenville Tobacco &amp; Vape</strong></p>
           <p>840 Greenville Ave, Staunton, VA 24401</p>
           <p>Daily 7AM to 11PM</p>
@@ -241,7 +297,7 @@
       </section>
     </main>
 
-    <footer class="foot">
+    <footer class="foot reveal">
       <p>Industrial alternate preview · Greenville Tobacco &amp; Vape · Maximus Marketing</p>
     </footer>
 
