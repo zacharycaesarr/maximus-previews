@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Greenville Tobacco &amp; Vape | Industrial Preview</title>
+    <meta name="description" content="Staunton's #1 shop. Dark industrial preview for Greenville Tobacco & Vape." />
+    <meta name="theme-color" content="#12100e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="agegate" id="agegate" role="dialog" aria-modal="true" aria-labelledby="age-title">
+      <div class="agegate__card">
+        <p class="badge">Verified Age 21+</p>
+        <h1 id="age-title">Are you 21 or older?</h1>
+        <p>ID checked in store on every nicotine purchase.</p>
+        <div class="agegate__actions">
+          <button type="button" class="btn btn--copper" id="age-enter">Enter Shop</button>
+          <button type="button" class="btn btn--ghost" id="age-exit">Exit</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="site-head">
+      <div class="site-head__brand">
+        <p class="site-head__logo">Greenville Tobacco &amp; Vape</p>
+        <p class="site-head__tag">Staunton's go-to for vapor &amp; glass</p>
+      </div>
+      <nav class="site-head__nav" aria-label="Primary">
+        <a href="#grid">Shop</a>
+        <a href="#order">Order Ahead</a>
+        <a href="#brands">Our Brands</a>
+        <a href="#find">Find Us</a>
+      </nav>
+      <div class="site-head__meta">
+        <span class="pill">Tobacco Compliant Shop</span>
+        <span class="cart" id="cart-wrap">Cart <strong id="cart-count">0</strong></span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Staunton, VA · Greenville Ave</p>
+          <h1>Explore the vapor.<br />Own the glass.</h1>
+          <p class="hero__lead">
+            High shelf stock, straight talk, and express pickup on Greenville Ave.
+          </p>
+          <div class="hero__ctas">
+            <a class="btn btn--copper" href="#grid">Shop Now</a>
+            <a class="btn btn--ghost" href="#order">Order Ahead</a>
+          </div>
+          <p class="badge badge--inline">Verified Age 21+</p>
+        </div>
+        <div class="hero__stage" aria-hidden="true">
+          <img src="../assets/products/the-clear.webp" alt="" width="220" height="360" />
+          <div class="hero__glow"></div>
+        </div>
+      </section>
+
+      <section class="section" id="grid">
+        <div class="section__head">
+          <p class="eyebrow">Featured</p>
+          <h2>On the slate tonight</h2>
+        </div>
+        <div class="product-grid">
+          <article class="pcard">
+            <div class="pcard__media pcard__media--wood">
+              <img src="../assets/products/blue-razz.webp" alt="Blue Razz disposable" />
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__cat">Featured Disposables</p>
+              <h3>Blue Razz Disposable</h3>
+              <p class="pcard__price">$16.99</p>
+              <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
+            </div>
+          </article>
+          <article class="pcard">
+            <div class="pcard__media pcard__media--concrete">
+              <img src="../assets/products/nicotine-pouches.webp" alt="Cool Mint pouches" />
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__cat">Zyn &amp; Nic Pouches</p>
+              <h3>Cool Mint Can of 20</h3>
+              <p class="pcard__price">$5.99</p>
+              <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
+            </div>
+          </article>
+          <article class="pcard">
+            <div class="pcard__media pcard__media--slate">
+              <img src="../assets/products/the-clear.webp" alt="The Clear" />
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__cat">Premium Mods</p>
+              <h3>The Clear</h3>
+              <p class="pcard__price">$34.99</p>
+              <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
+            </div>
+          </article>
+          <article class="pcard">
+            <div class="pcard__media pcard__media--wood">
+              <img src="../assets/brands/geekbarlogo.webp" alt="" class="pcard__logo" />
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__cat">E-Liquid Gallery</p>
+              <h3>Geek Bar Lane</h3>
+              <p class="pcard__price">From $18.99</p>
+              <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
+            </div>
+          </article>
+          <article class="pcard">
+            <div class="pcard__media pcard__media--concrete">
+              <img src="../assets/brands/smok_logo.webp" alt="" class="pcard__logo" />
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__cat">Glass Art</p>
+              <h3>SMOK Hardware</h3>
+              <p class="pcard__price">Ask in store</p>
+              <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
+            </div>
+          </article>
+          <article class="pcard">
+            <div class="pcard__media pcard__media--slate">
+              <img src="../assets/brands/ZYN_Logo_1.webp" alt="" class="pcard__logo" />
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__cat">Zyn &amp; Nic Pouches</p>
+              <h3>Zyn Shelf Picks</h3>
+              <p class="pcard__price">From $4.99</p>
+              <button type="button" class="btn btn--copper btn--full" data-add>Add to Cart</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="brands">
+        <div class="section__head">
+          <p class="eyebrow">Partners</p>
+          <h2>Top-tier brands on the shelf</h2>
+        </div>
+        <div class="brand-grid">
+          <div class="brand-tile brand-tile--feature">
+            <span class="brand-tile__badge">Featured Partner</span>
+            <img src="../assets/brands/geekbarlogo.webp" alt="Geek Bar" />
+          </div>
+          <div class="brand-tile"><img src="../assets/brands/lostmary_logo.webp" alt="Lost Mary" /></div>
+          <div class="brand-tile"><img src="../assets/brands/ZYN_Logo_1.webp" alt="Zyn" /></div>
+          <div class="brand-tile"><img src="../assets/brands/elfbar_logo.webp" alt="Elf Bar" /></div>
+          <div class="brand-tile"><img src="../assets/brands/smok_logo.webp" alt="SMOK" /></div>
+          <div class="brand-tile"><img src="../assets/brands/vaporesso-logo.webp" alt="Vaporesso" /></div>
+          <div class="brand-tile"><img src="../assets/brands/nakedlogo.webp" alt="Naked 100" /></div>
+          <div class="brand-tile"><img src="../assets/brands/juicehead.webp" alt="Juice Head" /></div>
+        </div>
+      </section>
+
+      <section class="section order" id="order">
+        <div class="order__panel">
+          <p class="eyebrow eyebrow--copper">Order Ahead</p>
+          <h2>Express pickup. Online reservations. Strict ID compliance. No lines.</h2>
+          <ol class="order__steps">
+            <li><strong>01</strong> Reserve online</li>
+            <li><strong>02</strong> Get your unique QR code</li>
+            <li><strong>03</strong> ID validation at counter</li>
+            <li><strong>04</strong> Quick pickup on Greenville Ave</li>
+          </ol>
+          <div class="order__demo">
+            <div class="order__qr" id="qr" aria-hidden="true"></div>
+            <div>
+              <p>Sample Order GTV-4821</p>
+              <button type="button" class="btn btn--copper" id="qr-btn">Sample Order QR</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="voices">
+        <div class="section__head">
+          <p class="eyebrow">Customer Voices</p>
+          <h2>From the counter</h2>
+        </div>
+        <div class="voices">
+          <article class="voice">
+            <p class="voice__stars">★★★★★</p>
+            <p>Been coming here for years. They always have the pouches I want and they don't waste your time.</p>
+            <strong>Blake · Staunton</strong>
+          </article>
+          <article class="voice">
+            <p class="voice__stars">★★★★★</p>
+            <p>Open late when I need something after work. Staff actually knows the products.</p>
+            <strong>Rachel · Waynesboro</strong>
+          </article>
+          <article class="voice">
+            <p class="voice__stars">★★★★★</p>
+            <p>If they add Order Ahead I'm never waiting in a rush again. Already my go to spot.</p>
+            <strong>Isa · Staunton</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="section find" id="find">
+        <div class="section__head">
+          <p class="eyebrow">Find Us in Staunton</p>
+          <h2>Open daily</h2>
+        </div>
+        <div class="find__map">
+          <iframe
+            title="Greenville Tobacco and Vape map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=840%20Greenville%20Ave%2C%20Staunton%2C%20VA%2024401&z=16&output=embed"
+          ></iframe>
+        </div>
+        <div class="find__info">
+          <p><strong>Greenville Tobacco &amp; Vape</strong></p>
+          <p>840 Greenville Ave, Staunton, VA 24401</p>
+          <p>Daily 7AM to 11PM</p>
+          <p><a href="tel:+15404904614">(540) 490-4614</a></p>
+          <p>
+            <a href="https://www.instagram.com/greenville_tobacco_vape/" target="_blank" rel="noopener noreferrer"
+              >@greenville_tobacco_vape</a
+            >
+          </p>
+          <div class="find__actions">
+            <a class="btn btn--copper" href="tel:+15404904614">Call</a>
+            <a
+              class="btn btn--ghost"
+              href="https://maps.google.com/?q=840+Greenville+Ave,+Staunton,+VA+24401"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Directions</a
+            >
+          </div>
+          <p class="badge badge--inline">Verified Age 21+ · Tobacco Compliant Shop</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>Industrial alternate preview · Greenville Tobacco &amp; Vape · Maximus Marketing</p>
+    </footer>
+
+    <div class="toast" id="toast" hidden></div>
+    <script src="js/main.js"></script>
+  </body>
+</html>

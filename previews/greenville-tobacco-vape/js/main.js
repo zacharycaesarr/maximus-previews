@@ -2,6 +2,7 @@
   "use strict";
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var isMobile = window.matchMedia("(max-width: 900px), (pointer: coarse)").matches;
 
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
@@ -12,7 +13,6 @@
   var enterBtn = document.getElementById("age-enter");
   var exitBtn = document.getElementById("age-exit");
   var gateKey = "gtv_age_ok";
-  var hero = document.getElementById("hero");
 
   function pinTop() {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -24,12 +24,6 @@
     pinTop();
     document.body.classList.add("hero-ready");
     runSlogan();
-    var logo = document.getElementById("hero-logo");
-    if (logo && logo.focus) {
-      try {
-        logo.setAttribute("tabindex", "-1");
-      } catch (err) {}
-    }
   }
 
   function openGate() {
@@ -57,7 +51,7 @@
       pinTop();
       revealHero();
       window.setTimeout(pinTop, 50);
-    }, reduceMotion ? 0 : 380);
+    }, reduceMotion ? 0 : 320);
   }
 
   if (sessionStorage.getItem(gateKey) === "1") {
@@ -95,7 +89,6 @@
     });
   }
 
-  /* ---------- Slogan words ---------- */
   function runSlogan() {
     var slogan = document.getElementById("slogan");
     if (!slogan) return;
@@ -108,7 +101,7 @@
     slogan.classList.add("is-in");
   }
 
-  /* ---------- Toast + universal tap feedback ---------- */
+  /* ---------- Toast ---------- */
   var toast = document.getElementById("toast");
   var toastTimer = null;
 
@@ -124,8 +117,8 @@
       toast.classList.remove("is-on");
       window.setTimeout(function () {
         toast.hidden = true;
-      }, 200);
-    }, 1700);
+      }, 180);
+    }, 1600);
   }
 
   document.addEventListener("click", function (e) {
@@ -133,6 +126,22 @@
     if (!el) return;
     var msg = el.getAttribute("data-tap");
     if (msg) showToast(msg);
+  });
+
+  /* ---------- Cart counter ---------- */
+  var cartCount = 0;
+  var cartBadge = document.getElementById("cart-count");
+
+  function setCart(n) {
+    cartCount = Math.max(0, n);
+    if (cartBadge) cartBadge.textContent = String(cartCount);
+  }
+
+  document.querySelectorAll("[data-add-cart]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      setCart(cartCount + 1);
+      showToast("Added to cart (" + cartCount + ")");
+    });
   });
 
   /* ---------- Category sheet ---------- */
@@ -159,7 +168,7 @@
     },
     accessories: {
       title: "Accessories",
-      body: "Chargers, glass, cases, the little stuff that keeps your day moving.",
+      body: "Chargers, cases, the little stuff that keeps your day moving.",
     },
   };
 
@@ -191,7 +200,7 @@
         sheet.hidden = true;
         if (lastFocus && lastFocus.focus) lastFocus.focus();
       },
-      reduceMotion ? 0 : 280
+      reduceMotion ? 0 : 240
     );
   }
 
@@ -259,7 +268,7 @@
     });
   }
 
-  /* ---------- Product rail scroll (desktop arrows + drag) ---------- */
+  /* ---------- Rails ---------- */
   var rail = document.getElementById("product-rail");
   var prevBtn = document.getElementById("prod-prev");
   var nextBtn = document.getElementById("prod-next");
@@ -277,7 +286,6 @@
     var down = false;
     var startX = 0;
     var startScroll = 0;
-
     el.addEventListener("pointerdown", function (e) {
       if (e.pointerType === "touch") return;
       down = true;
@@ -297,9 +305,11 @@
   enableDrag(document.querySelector(".review-rail"));
   enableDrag(document.querySelector(".lane-rail"));
 
-  /* ---------- Scroll reveals + dock ---------- */
+  /* ---------- Scroll UI ---------- */
   var reveals = document.querySelectorAll(".reveal");
   var dock = document.getElementById("dock");
+  var shopbar = document.getElementById("shopbar");
+  var ticking = false;
 
   if (reduceMotion) {
     reveals.forEach(function (el) { el.classList.add("is-in"); });
@@ -314,40 +324,38 @@
           }
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -30px 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -24px 0px" }
     );
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add("is-in"); });
   }
 
-  function updateDock() {
-    if (!dock) return;
+  function onScrollFrame() {
     var y = window.scrollY || 0;
-    if (y > 160) dock.classList.add("is-shown");
-    else dock.classList.remove("is-shown");
-    if (y > 320) dock.classList.add("is-compact");
-    else dock.classList.remove("is-compact");
+    if (dock) {
+      if (y > 160) dock.classList.add("is-shown");
+      else dock.classList.remove("is-shown");
+      if (y > 320) dock.classList.add("is-compact");
+      else dock.classList.remove("is-compact");
+    }
+    if (shopbar) {
+      if (y > 90) shopbar.classList.add("is-scrolled");
+      else shopbar.classList.remove("is-scrolled");
+    }
+    ticking = false;
   }
 
-  var shopbar = document.getElementById("shopbar");
-
-  function updateShopbar() {
-    if (!shopbar) return;
-    if (window.scrollY > 90) shopbar.classList.add("is-scrolled");
-    else shopbar.classList.remove("is-scrolled");
-  }
-
-  updateDock();
-  updateShopbar();
   window.addEventListener(
     "scroll",
     function () {
-      updateDock();
-      updateShopbar();
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(onScrollFrame);
     },
     { passive: true }
   );
+  onScrollFrame();
 
   var searchForm = document.getElementById("shop-search");
   if (searchForm) {
@@ -355,7 +363,7 @@
       e.preventDefault();
       var q = document.getElementById("search-q");
       var val = q && q.value ? q.value.trim() : "";
-      showToast(val ? 'Search preview: "' + val + '"' : "Search preview");
+      showToast(val ? 'Search: "' + val + '"' : "Search preview");
     });
   }
 
@@ -378,7 +386,7 @@
     helpFab.setAttribute("aria-expanded", "false");
     window.setTimeout(function () {
       helpPanel.hidden = true;
-    }, reduceMotion ? 0 : 220);
+    }, reduceMotion ? 0 : 180);
   }
 
   if (helpFab) {
@@ -389,18 +397,20 @@
   }
   if (helpClose) helpClose.addEventListener("click", closeHelp);
 
-  /* ---------- Calm full-page cloud canvas ---------- */
+  /* ---------- Lightweight clouds (mobile-safe) ---------- */
   var canvas = document.getElementById("cloud-canvas");
   if (!canvas || reduceMotion) return;
 
-  var ctx = canvas.getContext("2d");
+  var ctx = canvas.getContext("2d", { alpha: true });
   var clouds = [];
-  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
   var w = 0;
   var h = 0;
   var last = 0;
   var lastW = 0;
-  var lastH = 0;
+  var running = true;
+  var rafId = 0;
+  var frameBudget = isMobile ? 42 : 22; // ~24fps mobile, ~45fps desktop
 
   function resize(forceSeed) {
     var nextW = window.innerWidth;
@@ -412,116 +422,107 @@
     canvas.style.width = w + "px";
     canvas.style.height = h + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    var bigChange =
-      Math.abs(nextW - lastW) > 80 || Math.abs(nextH - lastH) > 120;
-    if (forceSeed || !clouds.length || bigChange) {
+    if (forceSeed || !clouds.length || Math.abs(nextW - lastW) > 100) {
       lastW = nextW;
-      lastH = nextH;
       seedClouds();
     }
   }
 
-  function makePuff(base) {
-    return {
-      ox: (Math.random() - 0.5) * base.spread,
-      oy: (Math.random() - 0.5) * base.spread * 0.4,
-      r: base.r * (0.5 + Math.random() * 0.55),
-      phase: Math.random() * Math.PI * 2,
-    };
-  }
-
-  function spawnCloud(seedX) {
-    var baseR = 48 + Math.random() * 70;
-    var puffCount = 5 + Math.floor(Math.random() * 4);
+  function spawnCloud() {
+    var baseR = isMobile ? 40 + Math.random() * 42 : 48 + Math.random() * 58;
+    var puffs = isMobile ? 3 : 4;
     var c = {
-      x: typeof seedX === "number" ? seedX : Math.random() * (w + 300) - 150,
-      y: 30 + Math.random() * Math.max(120, h - 60),
-      speed: 0.035 + Math.random() * 0.05,
-      life: 0.55 + Math.random() * 0.45,
-      grow: 0.00004 + Math.random() * 0.00006,
-      fading: false,
-      alpha: 0.14 + Math.random() * 0.16,
-      spread: baseR * 1.5,
-      r: baseR,
-      puffs: [],
+      x: Math.random() * (w + 240) - 120,
+      y: 40 + Math.random() * Math.max(160, h - 80),
+      speed: 0.02 + Math.random() * 0.03,
+      alpha: 0.12 + Math.random() * 0.12,
+      spread: baseR * 1.35,
       morph: Math.random() * Math.PI * 2,
+      puffs: [],
     };
-    for (var i = 0; i < puffCount; i++) c.puffs.push(makePuff(c));
+    for (var i = 0; i < puffs; i++) {
+      c.puffs.push({
+        ox: (Math.random() - 0.5) * c.spread,
+        oy: (Math.random() - 0.5) * c.spread * 0.35,
+        r: baseR * (0.55 + Math.random() * 0.4),
+      });
+    }
     return c;
   }
 
   function seedClouds() {
     clouds = [];
-    var count = Math.max(10, Math.floor(w / 120));
+    var count = isMobile ? 5 : 8;
     for (var i = 0; i < count; i++) clouds.push(spawnCloud());
   }
 
   function drawCloud(c, t) {
-    var breathe = 1 + Math.sin(t * 0.00025 + c.morph) * 0.035;
-    var a = c.alpha * c.life;
-    if (a <= 0.02) return;
-
+    var breathe = 1 + Math.sin(t * 0.0002 + c.morph) * 0.025;
     ctx.save();
     ctx.translate(c.x, c.y);
-    ctx.globalAlpha = a;
+    ctx.globalAlpha = c.alpha;
     ctx.fillStyle = "#ffffff";
-    ctx.shadowColor = "rgba(255,255,255,0.4)";
-    ctx.shadowBlur = 18;
-
     for (var i = 0; i < c.puffs.length; i++) {
       var p = c.puffs[i];
-      var wriggle = Math.sin(t * 0.00035 + p.phase) * 2.2;
       var rr = p.r * breathe;
       ctx.beginPath();
-      ctx.ellipse(p.ox + wriggle, p.oy, rr * 1.12, rr * 0.76, 0, 0, Math.PI * 2);
+      ctx.ellipse(p.ox, p.oy, rr * 1.1, rr * 0.74, 0, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.restore();
   }
 
   function tick(ts) {
+    if (!running) {
+      rafId = 0;
+      return;
+    }
     if (!last) last = ts;
-    var raw = ts - last;
+    var dt = Math.min(frameBudget, ts - last);
+    if (ts - last < frameBudget - 2) {
+      rafId = window.requestAnimationFrame(tick);
+      return;
+    }
     last = ts;
-    // hard cap stops mobile scroll frame spikes from flinging clouds
-    var dt = Math.min(22, Math.max(0, raw));
 
     ctx.clearRect(0, 0, w, h);
-
     for (var i = 0; i < clouds.length; i++) {
       var c = clouds[i];
-      c.x += c.speed * (dt * 0.045);
-      c.morph += dt * 0.0002;
-
-      if (c.fading) {
-        c.life -= c.grow * dt;
-        if (c.life <= 0.35) {
-          c.fading = false;
-        }
-      } else if (c.life < 1) {
-        c.life += c.grow * dt;
-        if (c.life > 1) c.life = 1;
-      } else if (Math.random() < 0.0004) {
-        c.fading = true;
+      c.x += c.speed * (dt * 0.04);
+      c.morph += dt * 0.00015;
+      if (c.x - c.spread > w + 40) {
+        c.x = -140;
+        c.y = 40 + Math.random() * Math.max(160, h - 80);
       }
-
-      if (c.x - c.spread > w + 60) {
-        c.x = -160 - Math.random() * 80;
-        c.y = 30 + Math.random() * Math.max(120, h - 60);
-        c.life = 0.6 + Math.random() * 0.4;
-        c.fading = false;
-      }
-
       drawCloud(c, ts);
     }
+    rafId = window.requestAnimationFrame(tick);
+  }
 
-    window.requestAnimationFrame(tick);
+  function start() {
+    if (running && rafId) return;
+    running = true;
+    last = 0;
+    rafId = window.requestAnimationFrame(tick);
+  }
+
+  function stop() {
+    running = false;
+    if (rafId) {
+      window.cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
   }
 
   resize(true);
+  start();
+
   window.addEventListener("resize", function () {
     resize(false);
   });
-  window.requestAnimationFrame(tick);
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) stop();
+    else start();
+  });
 })();

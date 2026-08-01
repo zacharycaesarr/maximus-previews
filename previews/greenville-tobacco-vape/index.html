@@ -9,15 +9,10 @@
       content="Staunton's #1 tobacco and vape spot. Local preview for Greenville Tobacco & Vape."
     />
     <meta name="theme-color" content="#9fd4ef" />
-    <link rel="preconnect" href="https://api.fontshare.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/main.css" />
@@ -62,9 +57,9 @@
           <button type="button" class="shopbar__icon" data-tap="Help preview" aria-label="Help">
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm1.1-6.5l-.9.9A2.5 2.5 0 0012 14h-1v-1c0-.6.2-1.1.6-1.5l1.2-1.3c.3-.3.5-.7.5-1.2A1.8 1.8 0 0012 7a1.8 1.8 0 00-1.8 1.8H8.4A3.6 3.6 0 0112 5.2a3.6 3.6 0 013.6 3.6c0 .8-.3 1.5-.9 2.1z"/></svg>
           </button>
-          <button type="button" class="shopbar__icon shopbar__cart" data-tap="Cart preview" aria-label="Cart">
+          <button type="button" class="shopbar__icon shopbar__cart" data-tap="Cart" aria-label="Cart">
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7 18a2 2 0 110 4 2 2 0 010-4zm10 0a2 2 0 110 4 2 2 0 010-4zM7.2 14h9.7a1 1 0 00.97-.76L20 6H6.2L5.3 3H2v2h2l3.6 7.6L6.2 15a1 1 0 001 1.4H19v-2H7.4l.8-1.4z"/></svg>
-            <span class="shopbar__badge">0</span>
+            <span class="shopbar__badge" id="cart-count">0</span>
           </button>
         </div>
       </div>
@@ -94,11 +89,14 @@
         </p>
 
         <p class="hero__mark" id="slogan">
-          <span class="word">Staunton's</span>
-          <span class="word gold-num" aria-label="number one">
-            <span class="gold-num__text">#1</span>
-            <span class="gold-num__spark" aria-hidden="true"></span>
+          <span class="hero__mark-row">
+            <span class="word">Staunton's</span>
+            <span class="word gold-num" aria-label="number one">
+              <span class="gold-num__text">#1</span>
+              <span class="gold-num__spark" aria-hidden="true"></span>
+            </span>
           </span>
+          <span class="hero__mark-sub word">vape spot</span>
         </p>
 
         <article class="feature glass" id="feature">
@@ -141,31 +139,49 @@
         </div>
         <div class="lane-rail" role="list">
           <button type="button" class="lane" data-cat="disposables" role="listitem">
+            <span class="lane__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M10 2h4v3h-1v2.1A7 7 0 0117 14v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6a7 7 0 014-6.9V5h-1V2zm2 7a5 5 0 00-5 5v6h10v-6a5 5 0 00-5-5z"/></svg>
+            </span>
             <span class="lane__tag">Pull</span>
             <strong>Disposables</strong>
             <em>Ready flavors</em>
           </button>
           <button type="button" class="lane" data-cat="devices" role="listitem">
+            <span class="lane__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2zm1 3v10h8V5H8zm4 12a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
+            </span>
             <span class="lane__tag">Kits</span>
             <strong>Devices</strong>
             <em>Pods &amp; mods</em>
           </button>
           <button type="button" class="lane" data-cat="eliquid" role="listitem">
+            <span class="lane__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M9 2h6l1 3h3v2h-1.1l-1.4 13.2A2 2 0 0114.5 22h-5a2 2 0 01-2-1.8L6.1 7H5V5h3L9 2zm1.2 5l1.2 11h1.2l1.2-11H10.2z"/></svg>
+            </span>
             <span class="lane__tag">Juice</span>
             <strong>E-Liquid</strong>
             <em>Bottle fills</em>
           </button>
           <button type="button" class="lane" data-cat="pouches" role="listitem">
+            <span class="lane__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a9 9 0 019 9c0 4.2-2.9 7.7-6.8 8.7L12 22l-2.2-2.3C6 18.7 3 15.2 3 11a9 9 0 019-9zm0 2a7 7 0 100 14 7 7 0 000-14zm-1 3h2v4.2l2.8 1.6-1 1.7L11 12.4V7z"/></svg>
+            </span>
             <span class="lane__tag">Daily</span>
             <strong>Nic Pouches</strong>
             <em>Always stocked</em>
           </button>
           <button type="button" class="lane" data-cat="coils" role="listitem">
+            <span class="lane__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M11 2h2v3.1c1.7.4 3 2 3 3 3h3.1v2H16c0 1.7-1.3 3.2-3 3.6V22h-2v-8.3c-1.7-.4-3-1.9-3-3.7H5.1V8H8c0-1.7 1.3-3.2 3-3.6V2zm1 6a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
+            </span>
             <span class="lane__tag">Parts</span>
             <strong>Coils</strong>
             <em>Keep it running</em>
           </button>
           <button type="button" class="lane" data-cat="accessories" role="listitem">
+            <span class="lane__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M7 2h10v4H7V2zm-2 6h14l1 3v9a2 2 0 01-2 2H6a2 2 0 01-2-2v-9l1-3zm3 3v2h2v-2H8zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2z"/></svg>
+            </span>
             <span class="lane__tag">Extra</span>
             <strong>Accessories</strong>
             <em>Chargers &amp; more</em>
@@ -273,7 +289,7 @@
               <div class="product__row">
                 <span class="product__price">$5.99</span>
                 <div class="product__actions">
-                  <button type="button" class="btn btn--mini btn--solid" data-tap="Added to demo order">Add</button>
+                  <button type="button" class="btn btn--mini btn--solid" data-add-cart>Add</button>
                   <button type="button" class="btn btn--mini btn--ghost" data-tap="Explore opens in the full build">Explore</button>
                 </div>
               </div>
@@ -289,7 +305,7 @@
               <div class="product__row">
                 <span class="product__price">$16.99</span>
                 <div class="product__actions">
-                  <button type="button" class="btn btn--mini btn--solid" data-tap="Added to demo order">Add</button>
+                  <button type="button" class="btn btn--mini btn--solid" data-add-cart>Add</button>
                   <button type="button" class="btn btn--mini btn--ghost" data-tap="Explore opens in the full build">Explore</button>
                 </div>
               </div>
@@ -305,7 +321,7 @@
               <div class="product__row">
                 <span class="product__price">$34.99</span>
                 <div class="product__actions">
-                  <button type="button" class="btn btn--mini btn--solid" data-tap="Added to demo order">Add</button>
+                  <button type="button" class="btn btn--mini btn--solid" data-add-cart>Add</button>
                   <button type="button" class="btn btn--mini btn--ghost" data-tap="Explore opens in the full build">Explore</button>
                 </div>
               </div>
