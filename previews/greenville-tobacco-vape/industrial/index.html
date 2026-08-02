@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css?v=3" />
   </head>
   <body>
     <div class="agegate" id="agegate" role="dialog" aria-modal="true" aria-labelledby="age-title">
@@ -64,11 +64,26 @@
         </div>
       </div>
       <nav class="mobile-nav" id="mobile-nav" hidden>
-        <a href="#grid">Shop Disposables</a>
-        <a href="#grid" data-filter-jump="zyn">Nic Pouches</a>
-        <a href="#grid" data-filter-jump="hardware">Glass &amp; Hardware</a>
-        <a href="#order">Order Ahead</a>
-        <a href="#find">Find Us</a>
+        <a href="#grid">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M7 2h3v8H7V2zm7 0h3v5h-3V2zM7 12h3v10H7V12zm7 4h3v6h-3v-6zM4 14h1v2H4v-2zm12-5h1v2h-1V9zM3 7h2v2H3V7zm16 8h2v2h-2v-2z"/></svg>
+          Shop Disposables
+        </a>
+        <a href="#grid" data-filter-jump="zyn">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 8h16v3H4V8zm1 5h14l1 7H4l1-7zm2-9h10v2H7V4z"/></svg>
+          Nic Pouches
+        </a>
+        <a href="#grid" data-filter-jump="hardware">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M9 2h6v3H9V2zm-2 5h10l1 3v10a2 2 0 01-2 2H8a2 2 0 01-2-2V10l1-3zm3 4v2h2v-2H10zm4 0v2h2v-2h-2z"/></svg>
+          Glass &amp; Hardware
+        </a>
+        <a href="#order">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h-3v2h2v2h-2v2h2v-2h2v-2h-2v-2zm-1 6h4v2h-4v-2z"/></svg>
+          Order Ahead
+        </a>
+        <a href="#find">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>
+          Find Us
+        </a>
       </nav>
     </header>
 
@@ -322,6 +337,6 @@
     </nav>
 
     <div class="toast" id="toast" hidden></div>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=3"></script>
   </body>
 </html>
