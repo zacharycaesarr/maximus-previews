@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css?v=3" />
+    <link rel="stylesheet" href="css/main.css?v=4" />
   </head>
   <body>
     <div class="agegate" id="agegate" role="dialog" aria-modal="true" aria-labelledby="age-title">
@@ -31,7 +31,7 @@
       <p class="util-bar__left">
         <span class="live-pill live-pill--sm"><span class="live-pill__dot"></span> In-store inventory live</span>
         <span class="util-bar__sep">·</span>
-        <span>Open daily 7AM–11PM</span>
+        <span>Open daily 7AM to 11PM</span>
         <span class="util-bar__sep">·</span>
         <span>Staunton, VA</span>
       </p>
@@ -65,11 +65,23 @@
       </div>
       <nav class="mobile-nav" id="mobile-nav" hidden>
         <a href="#grid">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M7 2h3v8H7V2zm7 0h3v5h-3V2zM7 12h3v10H7V12zm7 4h3v6h-3v-6zM4 14h1v2H4v-2zm12-5h1v2h-1V9zM3 7h2v2H3V7zm16 8h2v2h-2v-2z"/></svg>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M16 6V5a4 4 0 00-8 0v1H4v14a2 2 0 002 2h12a2 2 0 002-2V6h-4zM10 5a2 2 0 014 0v1h-4V5zm8 15H6V8h12v12z"
+            />
+          </svg>
           Shop Disposables
         </a>
         <a href="#grid" data-filter-jump="zyn">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 8h16v3H4V8zm1 5h14l1 7H4l1-7zm2-9h10v2H7V4z"/></svg>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7" />
+            <circle cx="12" cy="12" r="5.7" fill="none" stroke="currentColor" stroke-width="1.3" />
+            <path
+              fill="currentColor"
+              d="M9.1 8.2h1.55l2.05 4.35V8.2H14.9v7.6h-1.55l-2.05-4.35v4.35H9.1V8.2z"
+            />
+          </svg>
           Nic Pouches
         </a>
         <a href="#grid" data-filter-jump="hardware">
@@ -198,7 +210,7 @@
             </div>
           </article>
         </div>
-        <p class="filter-empty" id="filter-empty" hidden>Nothing in that lane right now — try All.</p>
+        <p class="filter-empty" id="filter-empty" hidden>Nothing in that lane right now. Try All.</p>
       </section>
 
       <section class="section" id="brands">
@@ -234,14 +246,14 @@
               <span class="order__num">02</span>
               <div>
                 <strong>Get your QR pass</strong>
-                <p>Instant order pass on your phone — no app download.</p>
+                <p>Instant order pass on your phone. No app download.</p>
               </div>
             </li>
             <li>
               <span class="order__num">03</span>
               <div>
                 <strong>Flash ID + QR</strong>
-                <p>Show both at the Greenville Ave counter and skip the line.</p>
+                <p>Get your QR code and ID ready, and skip the line once they're seen!</p>
               </div>
             </li>
           </ol>
@@ -337,6 +349,6 @@
     </nav>
 
     <div class="toast" id="toast" hidden></div>
-    <script src="js/main.js?v=3"></script>
+    <script src="js/main.js?v=4"></script>
   </body>
 </html>

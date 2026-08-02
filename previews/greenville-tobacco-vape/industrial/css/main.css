@@ -1,4 +1,5 @@
 :root {
+  /* palette locked for the retail pitch */
   --bg: #0f1117;
   --bg-2: #151821;
   --panel: #1a1d27;
@@ -16,7 +17,7 @@
   --display: "Oswald", "Arial Narrow", sans-serif;
   --body: "Outfit", system-ui, sans-serif;
   --edge: 0;
-  --dock-h: 48px;
+  --dock-h: 48px; /* kept short so it doesnt eat the phone screen */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
