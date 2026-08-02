@@ -4,7 +4,7 @@
   var gate = document.getElementById("agegate");
   var enterBtn = document.getElementById("age-enter");
   var exitBtn = document.getElementById("age-exit");
-  var key = "gtv_industrial_age";
+  var key = "gtv_retail_age";
 
   function closeGate() {
     if (!gate) return;
@@ -34,6 +34,26 @@
     });
   }
 
+  /* Mobile nav */
+  var toggle = document.getElementById("nav-toggle");
+  var mobileNav = document.getElementById("mobile-nav");
+  if (toggle && mobileNav) {
+    toggle.addEventListener("click", function () {
+      var open = toggle.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) mobileNav.removeAttribute("hidden");
+      else mobileNav.setAttribute("hidden", "");
+    });
+    mobileNav.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        toggle.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        mobileNav.setAttribute("hidden", "");
+      });
+    });
+  }
+
+  /* Cart */
   var count = 0;
   var badge = document.getElementById("cart-count");
   var toast = document.getElementById("toast");
@@ -47,19 +67,63 @@
     window.clearTimeout(timer);
     timer = window.setTimeout(function () {
       toast.classList.remove("is-on");
-    }, 1500);
+    }, 1600);
   }
 
   document.querySelectorAll("[data-add]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       count += 1;
-      if (badge) badge.textContent = String(count);
-      showToast("Added to cart (" + count + ")");
+      if (badge) {
+        badge.textContent = String(count);
+        badge.classList.remove("is-bump");
+        void badge.offsetWidth;
+        badge.classList.add("is-bump");
+      }
+      showToast("Added to express order (" + count + ")");
     });
   });
 
+  /* Category filters */
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".pcard"));
+  var empty = document.getElementById("filter-empty");
+  var cats = Array.prototype.slice.call(document.querySelectorAll(".cat"));
+
+  function setFilter(filter) {
+    cats.forEach(function (c) {
+      var on = c.getAttribute("data-filter") === filter;
+      c.classList.toggle("is-on", on);
+      c.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    var shown = 0;
+    cards.forEach(function (card) {
+      var tags = (card.getAttribute("data-tags") || "").split(/\s+/);
+      var match = filter === "all" || tags.indexOf(filter) !== -1;
+      card.classList.toggle("is-out", !match);
+      if (match) shown += 1;
+    });
+    if (empty) empty.hidden = shown > 0;
+  }
+
+  cats.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      setFilter(btn.getAttribute("data-filter") || "all");
+    });
+  });
+
+  document.querySelectorAll("[data-filter-jump]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      var f = el.getAttribute("data-filter-jump");
+      if (!f) return;
+      setFilter(f);
+      var grid = document.getElementById("grid");
+      if (grid) grid.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  /* QR pass */
   var qr = document.getElementById("qr");
   var qrBtn = document.getElementById("qr-btn");
+  var pass = document.querySelector(".pass");
   var built = false;
 
   function buildQr() {
@@ -88,11 +152,12 @@
   if (qrBtn) {
     qrBtn.addEventListener("click", function () {
       buildQr();
+      if (pass) pass.classList.add("is-ready");
       showToast("Sample pickup QR ready");
     });
   }
 
-  /* Scroll / enter reveals */
+  /* Scroll reveals */
   var nodes = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && nodes.length) {
     var io = new IntersectionObserver(
@@ -104,7 +169,7 @@
           }
         });
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.1 }
     );
     nodes.forEach(function (el) {
       io.observe(el);
@@ -115,12 +180,11 @@
     });
   }
 
-  /* Soft enter on first paint for above-the-fold hero bits */
   window.requestAnimationFrame(function () {
     document.querySelectorAll(".hero .reveal").forEach(function (el, i) {
       window.setTimeout(function () {
         el.classList.add("is-in");
-      }, 120 + i * 90);
+      }, 100 + i * 90);
     });
   });
 })();
