@@ -243,9 +243,30 @@
     '          <div class="pour__chips"><span>80/-</span><span>Broken Logic</span><span>Barley Late</span><span>Babington series</span></div>' +
     "        </div>" +
     '        <div class="pour__gallery">' +
-    '          <div class="pour__frame pour__frame--mug"><img src="assets/beer-mug.png" width="420" height="560" alt="Decipher Brewing pint glass" /></div>' +
-    '          <div class="pour__frame"><img src="assets/beer-cans.png" width="480" height="640" alt="80/- Scottish Ale cans with a filled mug" /></div>' +
-    '          <div class="pour__frame pour__frame--wide"><img src="assets/beer-lineup.png" width="520" height="700" alt="Decipher cans and koozies lineup" /></div>' +
+    '          <article class="pour__card">' +
+    '            <div class="pour__frame pour__frame--float"><img src="assets/beer-mug.png" width="420" height="560" alt="Fresh Decipher Brewing taproom pour" /></div>' +
+    '            <div class="pour__meta">' +
+    "              <h3>Fresh Taproom Pour</h3>" +
+    "              <p>Flagships and seasonals on draft</p>" +
+    '              <span class="pour__tag">Pints &amp; flights</span>' +
+    "            </div>" +
+    "          </article>" +
+    '          <article class="pour__card">' +
+    '            <div class="pour__frame pour__frame--float"><img src="assets/beer-cans.png" width="480" height="640" alt="80/- Scottish Ale cans with a filled mug" /></div>' +
+    '            <div class="pour__meta">' +
+    "              <h3>80/- Scottish Ale</h3>" +
+    "              <p>4.3% ABV · Flagship Scottish Ale</p>" +
+    '              <span class="pour__tag">Cans &amp; draft</span>' +
+    "            </div>" +
+    "          </article>" +
+    '          <article class="pour__card">' +
+    '            <div class="pour__frame pour__frame--float"><img src="assets/beer-lineup.png" width="520" height="700" alt="Decipher cans and koozies lineup" /></div>' +
+    '            <div class="pour__meta">' +
+    "              <h3>Taproom Cans &amp; Gear</h3>" +
+    "              <p>Custom koozies and to-go pours</p>" +
+    '              <span class="pour__tag">Available on site</span>' +
+    "            </div>" +
+    "          </article>" +
     "        </div>" +
     "      </div>" +
     "    </section>" +
@@ -520,7 +541,7 @@
           io.unobserve(entry.target);
         });
       },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px 12% 0px" }
     );
 
     nodes.forEach(function (node) {
