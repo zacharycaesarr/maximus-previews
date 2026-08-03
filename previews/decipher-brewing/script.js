@@ -25,6 +25,28 @@
     '<img src="assets/branch-airforce.png" width="18" height="18" alt="" />';
   var iconMail =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="M4 8l8 6 8-6"/></svg>';
+  var iconStar =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4l2.2 4.6 5 .7-3.6 3.5.9 5.1L12 15.2 7.5 17.3l.9-5.1L4.8 8.7l5-.7z"/></svg>';
+  var iconBeer =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9h8v9a2 2 0 01-2 2H9a2 2 0 01-2-2V9z"/><path d="M15 10h2.4a2.6 2.6 0 010 5.2H15"/><path d="M8 5.5c.8-.8 1.8-1.2 3-1.2s2.2.4 3 1.2"/><path d="M9.2 5.8c.4-.3.9-.5 1.5-.5s1.1.2 1.5.5"/></svg>';
+  var iconMedal =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="5"/><path d="M9.2 9.4L8 3.8l4 1.8 4-1.8-1.2 5.6"/><path d="M12 12.2v1.8"/><path d="M12 16.4h.01"/></svg>';
+  var iconClock =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.2"/><path d="M12 8.2V12l2.6 2.2"/></svg>';
+  var iconPin =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.2 6-10a6 6 0 10-12 0c0 4.8 6 10 6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>';
+
+  function drawerLink(href, label, icon) {
+    return (
+      '<a href="' +
+      href +
+      '"><span class="nav__drawer-icon" aria-hidden="true">' +
+      icon +
+      "</span><span>" +
+      label +
+      "</span></a>"
+    );
+  }
 
   function escapeHtml(str) {
     return String(str)
@@ -102,7 +124,10 @@
     '  <div class="agegate__panel">' +
     '    <div class="agegate__mark"><img src="assets/decipher-mark.png" width="64" height="64" alt="" /></div>' +
     '    <div class="agegate__logo"><img src="assets/decipher-logo.png" width="360" height="115" alt="decipher BREWING" /></div>' +
-    '    <h1 id="age-title">Are you 21 or older?</h1>' +
+    lineBlock("h1", "agegate__title", "Are you 21 or older?").replace(
+      "<h1 ",
+      '<h1 id="age-title" '
+    ) +
     "    <p>You need to be 21+ to enter this taproom preview.</p>" +
     '    <div class="agegate__actions">' +
     '      <button class="btn btn--solid" type="button" id="age-yes">Yes, I am 21+</button>' +
@@ -112,6 +137,7 @@
     "</div>" +
     '<div class="shell" id="shell">' +
     '  <div class="shell__grid" aria-hidden="true"></div>' +
+    '  <div class="shell__bits" id="shell-bits" aria-hidden="true"></div>' +
     '  <header class="nav" id="nav">' +
     '    <a class="nav__brand" href="#top" aria-label="Decipher Brewing home">' +
     '      <span class="nav__mark"><img src="assets/decipher-mark.png" width="34" height="34" alt="" /></span>' +
@@ -126,11 +152,11 @@
     '    <a class="nav__cta" href="tel:4349955777">Call Taproom</a>' +
     '    <button class="nav__toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="nav-drawer" aria-label="Menu"><span></span></button>' +
     '    <div class="nav__drawer" id="nav-drawer">' +
-    '      <a href="#features">Features</a>' +
-    '      <a href="#pours">Pours</a>' +
-    '      <a href="#about">Veterans</a>' +
-    '      <a href="#hours">Hours</a>' +
-    '      <a href="#visit">Visit</a>' +
+    drawerLink("#features", "Features", iconStar) +
+    drawerLink("#pours", "Pours", iconBeer) +
+    drawerLink("#about", "Veterans", iconMedal) +
+    drawerLink("#hours", "Hours", iconClock) +
+    drawerLink("#visit", "Visit", iconPin) +
     "    </div>" +
     "  </header>" +
     '  <main id="top">' +
@@ -161,7 +187,7 @@
     "        </div>" +
     "      </div>" +
     "    </section>" +
-    '    <aside class="hours" id="hours" aria-label="Hours">' +
+    '    <aside class="hours" id="hours" data-reveal aria-label="Hours">' +
     '      <div class="hours__inner">' +
     '        <div class="hours__status"><span class="hours__dot" id="open-dot" aria-hidden="true"></span><span id="open-label">Checking hours…</span></div>' +
     '        <ul class="hours__list">' +
@@ -172,7 +198,7 @@
     "        </ul>" +
     "      </div>" +
     "    </aside>" +
-    '    <section class="section" id="features">' +
+    '    <section class="section" id="features" data-reveal>' +
     '      <div class="section__head">' +
     '        <p class="section__tag">// decode the taproom</p>' +
     "        <h2>Four things to know</h2>" +
@@ -208,7 +234,7 @@
     ) +
     "      </div>" +
     "    </section>" +
-    '    <section class="section" id="pours">' +
+    '    <section class="section" id="pours" data-reveal>' +
     '      <div class="pour">' +
     '        <div class="pour__copy">' +
     '          <p class="section__tag">// on the bar</p>' +
@@ -223,7 +249,7 @@
     "        </div>" +
     "      </div>" +
     "    </section>" +
-    '    <section class="section" id="about">' +
+    '    <section class="section" id="about" data-reveal>' +
     '      <div class="crew-wrap">' +
     '        <div class="crew-intro">' +
     '          <p class="section__tag">// veteran built</p>' +
@@ -243,7 +269,7 @@
     "        </div>" +
     "      </div>" +
     "    </section>" +
-    '    <section class="section" id="visit">' +
+    '    <section class="section" id="visit" data-reveal>' +
     '      <div class="visit">' +
     '        <div class="visit__copy">' +
     "          <h2>Woolen Mills taproom</h2>" +
@@ -435,6 +461,73 @@
     });
   }
 
+  function runAgeDecode() {
+    var node = document.querySelector(".agegate [data-decode]");
+    if (!node) return Promise.resolve();
+    var finalText = node.getAttribute("data-decode") || "";
+    return decodeText(node, finalText, { duration: 1100, clean: true });
+  }
+
+  function mountAmbientBits() {
+    var host = document.getElementById("shell-bits");
+    if (!host || reduceMotion) return;
+    var glyphs = ["#", "*", "/", "<>", "0x", "||", "::", "[]", "01", "AF"];
+    var html = "";
+    for (var i = 0; i < 10; i += 1) {
+      var left = 6 + ((i * 9.3) % 88);
+      var top = 8 + ((i * 17) % 78);
+      var delay = (i * 0.55).toFixed(2);
+      var dur = (7 + (i % 4) * 1.4).toFixed(1);
+      html +=
+        '<span class="shell__bit" style="left:' +
+        left +
+        "%;top:" +
+        top +
+        "%;animation-duration:" +
+        dur +
+        "s;animation-delay:" +
+        delay +
+        's">' +
+        glyphs[i % glyphs.length] +
+        "</span>";
+    }
+    host.innerHTML = html;
+  }
+
+  function bindReveal() {
+    var nodes = document.querySelectorAll("[data-reveal]");
+    if (!nodes.length) return;
+
+    if (reduceMotion) {
+      nodes.forEach(function (node) {
+        node.classList.add("is-in");
+      });
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach(function (node) {
+        node.classList.add("is-in");
+      });
+      return;
+    }
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    nodes.forEach(function (node) {
+      io.observe(node);
+    });
+  }
+
   function goLive() {
     var gate = document.getElementById("agegate");
     var shell = document.getElementById("shell");
@@ -446,6 +539,8 @@
         gate.setAttribute("hidden", "");
       }, reduceMotion ? 0 : 400);
     }
+    mountAmbientBits();
+    bindReveal();
     runHeroDecode();
   }
 
@@ -466,6 +561,9 @@
       }
     } else {
       document.body.classList.add("gate-locked");
+      window.setTimeout(function () {
+        runAgeDecode();
+      }, reduceMotion ? 0 : 280);
     }
 
     if (yes) {
