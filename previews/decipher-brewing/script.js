@@ -101,7 +101,10 @@
     );
   }
 
-  function crewItem(name, role, detail, branchIcon) {
+  function crewItem(name, role, branch, detail, branchIcon) {
+    var branchHtml = branch
+      ? '<span class="crew__branch">' + branch + "</span> · "
+      : "";
     return (
       '<article class="crew__item">' +
       '<div class="crew__name">' +
@@ -113,6 +116,7 @@
       role +
       "</strong>" +
       "<em>" +
+      branchHtml +
       detail +
       "</em>" +
       "</article>"
@@ -278,15 +282,16 @@
     "          <p>Navy and Air Force founders. Still the people behind the bar, the recipes, and the weird holiday costumes.</p>" +
     "        </div>" +
     '        <div class="crew">' +
-    crewItem("Brad Burton", "Head brewer", "Navy · teaches craft brewing at PVCC", iconNavy) +
+    crewItem("Brad Burton", "Head brewer", "Navy", "teaches craft brewing at PVCC", iconNavy) +
     crewItem(
       "Scott Burton",
       "FOH / brewer",
-      "Navy · runs front of house, HR, and the beertender crew",
+      "Navy",
+      "runs front of house, HR, and the beertender crew",
       iconNavy
     ) +
-    crewItem("Megan Burton", "Admin", "Air Force · 20 years · keeps the lights on", iconAir) +
-    crewItem("Contact", "decipherbrewingco@gmail.com", "1740 Broadway St. #9, Charlottesville", iconMail) +
+    crewItem("Megan Burton", "Admin", "Air Force", "20 years · keeps the lights on", iconAir) +
+    crewItem("Contact", "decipherbrewingco@gmail.com", "", "1740 Broadway St. #9, Charlottesville", iconMail) +
     "        </div>" +
     "      </div>" +
     "    </section>" +

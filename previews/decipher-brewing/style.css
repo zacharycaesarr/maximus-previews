@@ -1,4 +1,14 @@
 /* Decipher Brewing V3.2 */
+@font-face {
+  font-family: "The Foregen Rough One";
+  src:
+    url("assets/fonts/The-Foregen-Rough-One.otf") format("opentype"),
+    url("assets/fonts/The-Foregen-Rough-One.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #f3f5f8;
   --bg-2: #e7ecf3;
@@ -13,6 +23,7 @@
   --ff-display: "Special Elite", "Courier New", monospace;
   --ff-ui: "IBM Plex Mono", ui-monospace, monospace;
   --ff-body: "Karla", system-ui, sans-serif;
+  --ff-branch: "The Foregen Rough One", "Special Elite", Georgia, serif;
   --nav-h: 72px;
   --max: 1100px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -505,7 +516,9 @@ button {
   left: 0;
   right: 0;
   padding: 10px 14px 16px;
-  background: linear-gradient(180deg, #ffffff, #f3f6fb);
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgba(29, 78, 216, 0.08), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(243, 246, 251, 0.96));
   border-bottom: 1px solid var(--line);
   flex-direction: column;
   gap: 6px;
@@ -513,6 +526,25 @@ button {
   font-size: 16px;
   color: var(--navy);
   box-shadow: 0 18px 36px rgba(17, 24, 39, 0.1);
+  overflow: hidden;
+}
+
+.nav__drawer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(29, 78, 216, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 78, 216, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.55;
+  mask-image: linear-gradient(180deg, #000 20%, transparent 92%);
+}
+
+.nav__drawer > * {
+  position: relative;
+  z-index: 1;
 }
 
 .nav__drawer a {
@@ -1439,6 +1471,17 @@ button {
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--mute);
+}
+
+.crew__branch {
+  display: inline-block;
+  font-family: var(--ff-branch);
+  font-size: 0.98rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--navy);
+  line-height: 1;
 }
 
 /* ---------- Visit ---------- */

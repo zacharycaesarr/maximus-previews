@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Maximus Marketing Preview Studio
 
-This repo (`maximus-previews`, local folder may still be named `vape-shop-greenville`) is the client preview hub. Live at `https://previews.maximus.baby/`. Read this first every chat.
+This repo (`maximus-previews`, local folder may still be named `vape-shop-greenville`) is the client preview hub. Live at `https://mockups.maxmarket.live/`. Read this first every chat.
 
 ## Agency identity
 
@@ -14,16 +14,19 @@ This repo (`maximus-previews`, local folder may still be named `vape-shop-greenv
 - Phone: 540-416-2983
 - Logo: `assets/mm-logo.svg` (also `assets/mm-logo.png`). Prefer SVG.
 
-## Live URL pattern (every preview)
+## Live URL pattern (every NEW preview)
 
-- Hub: `https://previews.maximus.baby/`
-- Client page: `https://previews.maximus.baby/previews/[client-slug]/`
-- Examples:
-  - Decipher: `https://previews.maximus.baby/previews/decipher-brewing/`
-  - Greenville Cloud: `https://previews.maximus.baby/previews/greenville-tobacco-vape/`
-  - Greenville Retail: `https://previews.maximus.baby/previews/greenville-tobacco-vape/industrial/`
-- After finishing a mockup: commit + push to `main` on `github.com/zacharycaesarr/maximus-previews`, then give Zach the live maximus.baby link (not only localhost).
+- Hub: `https://mockups.maxmarket.live/`
+- Client page: `https://mockups.maxmarket.live/previews/[client-slug]/`
+- Repo custom domain file: root `CNAME` = `mockups.maxmarket.live`
+- After finishing a mockup: commit + push to `main` on `github.com/zacharycaesarr/maximus-previews`, then give Zach the live `mockups.maxmarket.live` link (not only localhost).
 - Always add the hub card in root `index.html` and a row in `README.md` Live links when creating a new preview.
+
+### Legacy Greenville links (do not rewrite for the client)
+
+- Greenville was already shared on `https://previews.maximus.baby/...`
+- Keep Greenville content folders as-is. Do not force a Greenville rebrand or tell the client their old link is wrong unless Zach asks.
+- Future mockups (Decipher and after) always use `mockups.maxmarket.live`.
 
 ## Transparent PNG / SVG assets (Cursor chat bug)
 
@@ -77,12 +80,12 @@ Browser UI cannot be secretly secured. Soft blocks are deterrents. Badge + noind
 1. Research their live site and assets yourself. Upgrade, don't clone a past mockup.
 2. Create `previews/[slug]/` with the three files. Never clobber existing folders.
 3. Link from the hub + README live links table.
-4. Commit and push to `main` so `https://previews.maximus.baby/previews/[slug]/` goes live.
+4. Commit and push to `main` so `https://mockups.maxmarket.live/previews/[slug]/` goes live.
 5. Write copy like a human. No salesy AI filler.
 
 ## Decipher Brewing (facts only, not a style lock)
 
-- Live preview: https://previews.maximus.baby/previews/decipher-brewing/
+- Live preview: https://mockups.maxmarket.live/previews/decipher-brewing/
 - Live Wix: https://decipherbrewingco.wixsite.com/mysite-1
 - Slug: `decipher-brewing`
 - 100% veteran-owned (Brad, Scott, Megan Burton). Cipher / codebreaking identity. Tagline: "what's your solution?"
@@ -90,4 +93,6 @@ Browser UI cannot be secretly secured. Soft blocks are deterrents. Badge + noind
 - Hours: Sun 12-8 · Mon-Thu 3-9 · Fri 2-10 · Sat 12-10
 - Pizza + pretzels, pet-friendly, fire pits, Room 40 loyalty, Babington barrel series
 - Special Elite for titles, Karla for most body/subtext, IBM Plex Mono for hours + "tap to decode".
+- Branch labels (Navy / Air Force) use local font The Foregen Rough One (personal-use license caution for commercial).
+- Verified beer facts: Broken Logic IPA ~7% ABV; 80/- Scottish Ale ~4.3% ABV. Do not invent pint/4-pack prices.
 - 21+ gate before animations. No Virginia map graphic in current direction.

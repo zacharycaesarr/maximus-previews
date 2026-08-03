@@ -2,7 +2,7 @@
 
 Private client mockup hub for Maximus Marketing.
 
-- Live: https://previews.maximus.baby/
+- Live: https://mockups.maxmarket.live/
 - Repo: https://github.com/zacharycaesarr/maximus-previews
 - Agency: https://maxmarket.live/ · hello@maxmarket.live · 540-416-2983
 
@@ -18,7 +18,7 @@ previews/[client-slug]/
 ```
 
 Shared helpers: `shared/preview-lock.js`  
-Cursor memory bank: `.cursor/rules/preview-studio.mdc`
+Cursor memory bank: `.cursor/rules/preview-studio.mdc` (`alwaysApply: true`)
 
 **Design rule:** every mockup is a clean slate. Pull look from that client only. Do not reuse a house theme across clients.
 
@@ -40,15 +40,18 @@ These are deterrents, not real locks.
 2. Create `previews/[slug]/` with the three files. Never overwrite an existing folder.
 3. Link it from hub `index.html`.
 4. Push to `main`.
+5. Share the live link as `https://mockups.maxmarket.live/previews/[slug]/`
 
 ## Live links
 
 | Preview | URL |
 | --- | --- |
-| Hub | https://previews.maximus.baby/ |
-| Decipher Brewing | https://previews.maximus.baby/previews/decipher-brewing/ |
-| Greenville Cloud | https://previews.maximus.baby/previews/greenville-tobacco-vape/ |
-| Greenville Industrial | https://previews.maximus.baby/previews/greenville-tobacco-vape/industrial/ |
+| Hub | https://mockups.maxmarket.live/ |
+| Decipher Brewing | https://mockups.maxmarket.live/previews/decipher-brewing/ |
+| Greenville Cloud (legacy link already sent) | https://previews.maximus.baby/previews/greenville-tobacco-vape/ |
+| Greenville Retail (legacy link already sent) | https://previews.maximus.baby/previews/greenville-tobacco-vape/industrial/ |
+
+Greenville pages still live in this same repo. New share links should use `mockups.maxmarket.live`. The old `previews.maximus.baby` Greenville URLs stay listed above only because that link was already sent to the client.
 
 ## Local check
 
