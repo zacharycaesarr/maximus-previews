@@ -1,0 +1,93 @@
+---
+description: Permanent Preview Studio memory bank for Maximus Marketing client mockups
+alwaysApply: true
+---
+
+# Maximus Marketing Preview Studio
+
+This repo (`maximus-previews`, local folder may still be named `vape-shop-greenville`) is the client preview hub. Live at `https://previews.maximus.baby/`. Read this first every chat.
+
+## Agency identity
+
+- Business: Maximus Marketing (Zachary Maximus) · maxmarket.live
+- Email: hello@maxmarket.live
+- Phone: 540-416-2983
+- Logo: `assets/mm-logo.svg` (also `assets/mm-logo.png`). Prefer SVG.
+
+## Live URL pattern (every preview)
+
+- Hub: `https://previews.maximus.baby/`
+- Client page: `https://previews.maximus.baby/previews/[client-slug]/`
+- Examples:
+  - Decipher: `https://previews.maximus.baby/previews/decipher-brewing/`
+  - Greenville Cloud: `https://previews.maximus.baby/previews/greenville-tobacco-vape/`
+  - Greenville Retail: `https://previews.maximus.baby/previews/greenville-tobacco-vape/industrial/`
+- After finishing a mockup: commit + push to `main` on `github.com/zacharycaesarr/maximus-previews`, then give Zach the live maximus.baby link (not only localhost).
+- Always add the hub card in root `index.html` and a row in `README.md` Live links when creating a new preview.
+
+## Transparent PNG / SVG assets (Cursor chat bug)
+
+- Dragging or uploading transparent PNGs into Cursor chat often converts them (JPEG-style) and **destroys the alpha channel**, so they show as solid black.
+- This is a Cursor upload issue, not Photoshop. Confirmed workaround from Cursor forum: do **not** drag-drop assets into chat.
+- Correct workflow for all future previews:
+  1. Copy the real PNG/SVG into `previews/[slug]/assets/` (or another workspace folder).
+  2. Reference it in chat with `@path/to/file.png` so the agent reads the file from disk.
+  3. Or tell the agent the absolute path on disk (D: media folder, etc.) and have it copy locally.
+- Never auto color-key reflective product shots (silver cans, foam, glass highlights). Use true alpha exports only.
+
+## Folder rules
+
+```
+previews/[client-slug]/
+  index.html    # empty shell + meta
+  style.css
+  script.js     # protect + inject page markup
+  assets/       # client-specific images only
+```
+
+- Slug: lowercase kebab-case. Never overwrite an existing client folder.
+- Do not nest new mockups under Greenville. Legacy Greenville stays as-is.
+- Shared helpers: `shared/preview-lock.js`
+- Hub: update root `index.html` when adding a preview.
+
+## Every mockup must include
+
+1. Floating Maximus badge: `Concept Redesign by Maximus Marketing | maxmarket.live` + logo mark.
+2. Footer credit: `Concept Redesign by Maximus Marketing | Built for [Client]`.
+3. Mobile-first layout, smooth scrolling.
+4. `noindex,nofollow` meta + respect root `robots.txt`.
+5. Soft anti-theft from `preview-lock.js` (context menu / common view-source shortcuts / body `user-select: none`). Keep `tel:` / `mailto:` usable.
+6. Page body injected from a JS string so View Source on `index.html` is an empty shell. Keep the markup string editable in `script.js`.
+7. **No password / access gate** for cold-call previews. Open link = see the mockup (age gates are fine when the client sells alcohol/nicotine).
+8. **No diagonal "PREVIEW MODE - MAXIMUS MARKETING" overlay.** It hurts the look. Badge + footer credit are enough.
+
+## Design slate (critical)
+
+- Every client mockup starts as a **clean slate**.
+- Do **not** reuse a house theme, shared palette, dark-mode default, amber accent habit, cream/serif luxury look, or any other visual recipe across clients.
+- Pull look, type, color, and motion from **that client's** existing site, brand assets, and the brief for this job only.
+- Functional standards (mobile-first, badge, inject shell) stay. Visual sameness across mockups is a failure.
+
+## Anti-theft truth
+
+Browser UI cannot be secretly secured. Soft blocks are deterrents. Badge + noindex help. Never claim code is unstealable. Never break tap-to-call.
+
+## New-client workflow
+
+1. Research their live site and assets yourself. Upgrade, don't clone a past mockup.
+2. Create `previews/[slug]/` with the three files. Never clobber existing folders.
+3. Link from the hub + README live links table.
+4. Commit and push to `main` so `https://previews.maximus.baby/previews/[slug]/` goes live.
+5. Write copy like a human. No salesy AI filler.
+
+## Decipher Brewing (facts only, not a style lock)
+
+- Live preview: https://previews.maximus.baby/previews/decipher-brewing/
+- Live Wix: https://decipherbrewingco.wixsite.com/mysite-1
+- Slug: `decipher-brewing`
+- 100% veteran-owned (Brad, Scott, Megan Burton). Cipher / codebreaking identity. Tagline: "what's your solution?"
+- 1740 Broadway St. #9, Charlottesville, VA 22902 · 434-995-5777 · decipherbrewingco@gmail.com
+- Hours: Sun 12-8 · Mon-Thu 3-9 · Fri 2-10 · Sat 12-10
+- Pizza + pretzels, pet-friendly, fire pits, Room 40 loyalty, Babington barrel series
+- Special Elite for titles, Karla for most body/subtext, IBM Plex Mono for hours + "tap to decode".
+- 21+ gate before animations. No Virginia map graphic in current direction.
