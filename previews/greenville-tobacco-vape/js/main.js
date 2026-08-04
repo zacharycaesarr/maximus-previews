@@ -8,6 +8,57 @@
     history.scrollRestoration = "manual";
   }
 
+  function installPreviewBrandingAndLock() {
+    if (!document.body) return;
+
+    if (!document.querySelector(".mm-badge")) {
+      var badge = document.createElement("a");
+      badge.className = "mm-badge";
+      badge.href = "https://maxmarket.live/";
+      badge.target = "_blank";
+      badge.rel = "noopener noreferrer";
+      badge.setAttribute("aria-label", "Concept redesign by Maximus Marketing");
+      badge.innerHTML =
+        '<img class="mm-badge__logo" src="../../assets/mm-logo.svg" width="22" height="26" alt="" />' +
+        '<span class="mm-badge__text"><strong>Concept Redesign by Maximus Marketing</strong><span>maxmarket.live</span></span>';
+      document.body.appendChild(badge);
+    }
+
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener("selectstart", function (e) {
+      if (e.target && e.target.closest("a[href^='tel:'], a[href^='mailto:']")) return;
+      e.preventDefault();
+    });
+
+    document.addEventListener("copy", function (e) {
+      e.preventDefault();
+    });
+    document.addEventListener("cut", function (e) {
+      e.preventDefault();
+    });
+    document.addEventListener("paste", function (e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      var key = (e.key || "").toLowerCase();
+      var ctrl = e.ctrlKey || e.metaKey;
+      var shift = e.shiftKey;
+      var blocked =
+        e.key === "F12" ||
+        (ctrl && shift && (key === "i" || key === "j" || key === "c")) ||
+        (ctrl && (key === "u" || key === "c" || key === "x" || key === "v" || key === "a"));
+      if (!blocked) return;
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  }
+
+  installPreviewBrandingAndLock();
+
   /* ---------- Age gate ---------- */
   var gate = document.getElementById("agegate");
   var enterBtn = document.getElementById("age-enter");
